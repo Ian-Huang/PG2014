@@ -4,7 +4,7 @@ using System.Collections;
 public class RoleCard : MonoBehaviour
 {
     public int CurrentPositionIndex;
-
+    public GameObject RoleObject;
     public iTween.EaseType easeType;
 
     public void ScaleTo(Vector3 target)
