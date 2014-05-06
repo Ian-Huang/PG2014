@@ -5,10 +5,16 @@ public class RoleChange : MonoBehaviour
 {
     public ChangeDirection Direction;
 
-    void OnMouseDown()
+    void OnMouseUpAsButton()
     {
-        print(this.Direction);
-
+        if (this.Direction == ChangeDirection.Right)
+        {
+            RoleSelectController.script.RunRightCard();
+        }
+        else
+        {
+            RoleSelectController.script.RunLeftCard();
+        }
     }
 
     // Use this for initialization

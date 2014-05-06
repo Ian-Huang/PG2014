@@ -3,41 +3,17 @@ using System.Collections;
 
 public class RoleCard : MonoBehaviour
 {
-    private float originScale;
-    public float targetScale;
-    public float ChangeTime;
+    public int CurrentPositionIndex;
 
-    void ScaleToLarge()
+    public iTween.EaseType easeType;
+
+    public void ScaleTo(Vector3 target)
     {
-        iTween.ScaleTo(this.gameObject, iTween.Hash("scale", Vector3.one * this.targetScale, "time", this.ChangeTime));
+        iTween.ScaleTo(this.gameObject, iTween.Hash("scale", target, "time", GameDefinition.CardChangeTime, "easetype", this.easeType));
     }
 
-    void ScaleToSmall()
+    public void MoveTo(Vector3 target)
     {
-        iTween.ScaleTo(this.gameObject, iTween.Hash("scale", Vector3.one * this.originScale, "time", this.ChangeTime));
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        this.originScale = this.transform.localScale.x;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(100, 100, 100, 100), "ScaleToLarge"))
-        {
-            this.ScaleToLarge();
-        }
-        if (GUI.Button(new Rect(300, 100, 100, 100), "ScaleToSmall"))
-        {
-            this.ScaleToSmall();
-        }
+        iTween.MoveTo(this.gameObject, iTween.Hash("position", target, "time", GameDefinition.CardChangeTime, "easetype", this.easeType));
     }
 }
