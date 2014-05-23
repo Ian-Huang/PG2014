@@ -5,19 +5,6 @@ public class RoleChange : MonoBehaviour
 {
     public ChangeDirection Direction;
 
-    public Sprite NormalSprite;
-    public Sprite ActiveSprite;
-
-    void OnMouseDown()
-    {
-        this.GetComponent<SpriteRenderer>().sprite = this.ActiveSprite;
-    }
-
-    void OnMouseUp()
-    {
-        this.GetComponent<SpriteRenderer>().sprite = this.NormalSprite;
-    }
-
     void OnMouseUpAsButton()
     {
         if (this.Direction == ChangeDirection.Right)
@@ -28,12 +15,6 @@ public class RoleChange : MonoBehaviour
         {
             RoleSelectController.script.RunLeftCard();
         }
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        this.GetComponent<SpriteRenderer>().sprite = this.NormalSprite;
     }
 
     public enum ChangeDirection

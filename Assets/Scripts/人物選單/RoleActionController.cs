@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Role : MonoBehaviour
+public class RoleActionController : MonoBehaviour
 {
     private SmoothMoves.BoneAnimation boneAnimation;
 

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RoleCard : MonoBehaviour
 {
+    public GameDefinition.SystemPlayerName SystemName;
     public int CurrentPositionIndex;
     public GameObject RoleObject;
     public iTween.EaseType easeType;

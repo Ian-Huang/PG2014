@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 通用函式，Sprite Color 漸變控制
+/// </summary>
 public class SpriteColorTo : MonoBehaviour
 {
-    public Color StartColor = new Color(1, 1, 1, 1);
-    public Color EndColor = new Color(1, 1, 1, 1);
-    public float ChangeTime;
-    public float DelayTime;
+    public Color StartColor = new Color(1, 1, 1, 1);    //起始顏色
+    public Color EndColor = new Color(1, 1, 1, 1);      //結束顏色
+    public float ChangeTime;                            //過程花費時間
+    public float DelayTime;                             //延遲
     public bool isStartChange;
     public iTween.EaseType easeType;
 
@@ -19,6 +22,7 @@ public class SpriteColorTo : MonoBehaviour
 
     void OnEnable()
     {
+        //是否在物件被啟用時啟動函式
         if (this.isStartChange)
             this.ColorTo();
     }

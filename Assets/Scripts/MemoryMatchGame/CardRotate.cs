@@ -27,18 +27,6 @@ public class CardRotate : MonoBehaviour
             this.FaceType = CardFaceType.Front;
     }
 
-    void OnMouseDown()
-    {
-        //if (this.Sprite_active != null)
-        //    this.GetComponent<SpriteRenderer>().sprite = this.Sprite_active;
-    }
-
-    void OnMouseUp()
-    {
-        //if (this.Sprite_normal != null)
-        //    this.GetComponent<SpriteRenderer>().sprite = this.Sprite_normal;
-    }
-
     void OnMouseUpAsButton()
     {
         if (!this.isRotate)
@@ -49,8 +37,6 @@ public class CardRotate : MonoBehaviour
                 this.RotateCard(CardFaceType.Back);
         }
     }
-
-
 
     #region Rotate Card
     void RotateCard(CardFaceType face)

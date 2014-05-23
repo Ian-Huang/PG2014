@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 事件集合器，集合所有事件清單，依序播放
+/// </summary>
 public class EventCollection : MonoBehaviour
 {
-    public List<GameObject> EventList;
-    public int CurrentEventIndex;
+    public List<GameObject> EventList;  //儲存事件清單
+    public int CurrentEventIndex;       //目前事件索引
 
     public static EventCollection script;
 
@@ -23,16 +26,19 @@ public class EventCollection : MonoBehaviour
         this.EventList[this.CurrentEventIndex].SetActive(true);
     }
 
+    /// <summary>
+    /// 切換至下一事件
+    /// </summary>
     public void NextEvent()
     {
-        this.EventList[this.CurrentEventIndex].SetActive(false);
+        this.EventList[this.CurrentEventIndex].SetActive(false);    //關閉前一事件物件
         this.CurrentEventIndex++;
-        this.EventList[this.CurrentEventIndex].SetActive(true);
+        this.EventList[this.CurrentEventIndex].SetActive(true);     //開啟新一事件物件
     }
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(100, 100, 100, 100), "Test"))
+        if (GUI.Button(new Rect(0, 0, 50, 50), "Test"))
         {
             this.NextEvent();
         }

@@ -33,12 +33,6 @@ public class FindDifferentGame_CheckArea : MonoBehaviour
         this.AlreadyFind = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public enum AreaType
     {
         Correct = 0, Error = 1

@@ -13,6 +13,7 @@ public class ObjectSwitchContorller : MonoBehaviour
     // Use this for initialization
     void OnEnable()
     {
+        //確認狀態
         if (this.switchType == SwitchType.Open)
         {
             foreach (GameObject temp in this.ObjectList)

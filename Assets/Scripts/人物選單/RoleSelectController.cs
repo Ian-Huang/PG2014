@@ -4,13 +4,16 @@ using System.Collections.Generic;
 
 public class RoleSelectController : MonoBehaviour
 {
-    public GameObject CurrentChooseRoleObject;
-
     public List<Transform> SaveRoleCardTransformList;
+
     private List<Vector3> roleCardPositionList;
     private List<Vector3> roleCarScaleList;
 
+    [HideInInspector]
+    public RoleCard CenterCard;
+
     private bool isChanging;
+    private GameObject CurrentChooseRoleObject;
 
     public static RoleSelectController script;
 
@@ -31,6 +34,17 @@ public class RoleSelectController : MonoBehaviour
             this.roleCardPositionList.Add(temp.position);
             this.roleCarScaleList.Add(temp.localScale);
         }
+
+        foreach (RoleCard tempScript in GameObject.FindObjectsOfType<RoleCard>())
+        {
+            if (tempScript.CurrentPositionIndex == 3)
+            {
+                this.CenterCard = tempScript;
+                this.CurrentChooseRoleObject = Instantiate(tempScript.RoleObject) as GameObject;
+                break;
+            }
+        }
+
     }
 
     /// <summary>
@@ -42,7 +56,7 @@ public class RoleSelectController : MonoBehaviour
         {
             RoleCard newFirstCard = null;
             RoleCard newLastCard = null;
-            RoleCard centerCard = null;
+            GameObject.FindObjectOfType<RoleNameEnter>().EnterStringEmpty();
 
             foreach (RoleCard temp in this.GetComponentsInChildren<RoleCard>())
             {
@@ -65,7 +79,7 @@ public class RoleSelectController : MonoBehaviour
                         temp.ScaleTo(this.roleCarScaleList[temp.CurrentPositionIndex]);
                     if (temp.CurrentPositionIndex == 3)
                     {
-                        centerCard = temp;
+                        this.CenterCard = temp;
                         temp.ScaleTo(this.roleCarScaleList[temp.CurrentPositionIndex]);
                     }
                 }
@@ -74,11 +88,12 @@ public class RoleSelectController : MonoBehaviour
             //新的第一張卡片要等於最後一張卡片(未完成)
             newFirstCard.gameObject.GetComponent<SpriteRenderer>().sprite = newLastCard.gameObject.GetComponent<SpriteRenderer>().sprite;
             newFirstCard.gameObject.GetComponentInChildren<TextMesh>().text = newLastCard.gameObject.GetComponentInChildren<TextMesh>().text;
+            newFirstCard.SystemName = newLastCard.SystemName;
             newFirstCard.RoleObject = newLastCard.RoleObject;
 
             //產生新人物由場景外走進場景
             Destroy(this.CurrentChooseRoleObject);
-            this.CurrentChooseRoleObject = Instantiate(centerCard.RoleObject) as GameObject;
+            this.CurrentChooseRoleObject = Instantiate(this.CenterCard.RoleObject) as GameObject;
 
             //船舵旋轉
             RudderRotate.script.ChangeRotate();
@@ -98,7 +113,7 @@ public class RoleSelectController : MonoBehaviour
         {
             RoleCard newLastCard = null;
             RoleCard newFirstCard = null;
-            RoleCard centerCard = null;
+            GameObject.FindObjectOfType<RoleNameEnter>().EnterStringEmpty();
 
             foreach (RoleCard temp in this.GetComponentsInChildren<RoleCard>())
             {
@@ -120,7 +135,7 @@ public class RoleSelectController : MonoBehaviour
                         temp.ScaleTo(this.roleCarScaleList[temp.CurrentPositionIndex]);
                     if (temp.CurrentPositionIndex == 3)
                     {
-                        centerCard = temp;
+                        this.CenterCard = temp;
                         temp.ScaleTo(this.roleCarScaleList[temp.CurrentPositionIndex]);
                     }
                 }
@@ -129,11 +144,12 @@ public class RoleSelectController : MonoBehaviour
             //新的最後一張卡片要等於第一張卡片(未完成)
             newLastCard.gameObject.GetComponent<SpriteRenderer>().sprite = newFirstCard.gameObject.GetComponent<SpriteRenderer>().sprite;
             newLastCard.gameObject.GetComponentInChildren<TextMesh>().text = newFirstCard.gameObject.GetComponentInChildren<TextMesh>().text;
+            newLastCard.SystemName = newFirstCard.SystemName;
             newLastCard.RoleObject = newFirstCard.RoleObject;
 
             //產生新人物由場景外走進場景
             Destroy(this.CurrentChooseRoleObject);
-            this.CurrentChooseRoleObject = Instantiate(centerCard.RoleObject) as GameObject;
+            this.CurrentChooseRoleObject = Instantiate(this.CenterCard.RoleObject) as GameObject;
 
             //船舵旋轉
             RudderRotate.script.ChangeRotate();
