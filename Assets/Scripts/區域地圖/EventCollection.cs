@@ -7,6 +7,13 @@ public class EventCollection : MonoBehaviour
     public List<GameObject> EventList;
     public int CurrentEventIndex;
 
+    public static EventCollection script;
+
+    void Awake()
+    {
+        script = this;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -23,17 +30,11 @@ public class EventCollection : MonoBehaviour
         this.EventList[this.CurrentEventIndex].SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnGUI()
     {
-
+        if (GUI.Button(new Rect(100, 100, 100, 100), "Test"))
+        {
+            this.NextEvent();
+        }
     }
-
-    //void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(100, 100, 100, 100), "Test"))
-    //    {
-    //        this.NextEvent();
-    //    }
-    //}
 }

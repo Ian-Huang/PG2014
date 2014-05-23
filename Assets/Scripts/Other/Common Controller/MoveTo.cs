@@ -10,8 +10,7 @@ public class MoveTo : MonoBehaviour
     public bool isStartMove;
     public iTween.EaseType easeType;
 
-    // Use this for initialization
-    void Start()
+    void OnEnable()
     {
         if (this.isStartMove)
             this.Move();
