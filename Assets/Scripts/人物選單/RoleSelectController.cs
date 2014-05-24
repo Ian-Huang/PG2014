@@ -35,6 +35,7 @@ public class RoleSelectController : MonoBehaviour
     {
         this.isChanging = false;
 
+        //紀錄角色卡片的位置、大小資訊
         this.roleCardPositionList = new List<Vector3>();
         this.roleCarScaleList = new List<Vector3>();
         foreach (Transform temp in this.SaveRoleCardTransformList)
@@ -43,6 +44,7 @@ public class RoleSelectController : MonoBehaviour
             this.roleCarScaleList.Add(temp.localScale);
         }
 
+        //產生中間的卡片的人物
         foreach (RoleCard tempScript in GameObject.FindObjectsOfType<RoleCard>())
         {
             if (tempScript.CurrentPositionIndex == 3)
@@ -185,13 +187,13 @@ public class RoleSelectController : MonoBehaviour
         GameDefinition.PlayerNameData[this.CenterCard.SystemName] = name;
     }
 
-    //void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(0, 0, 50, 50), "GG"))
-    //    {
-    //        Application.LoadLevel("區域地圖");
-    //    }
-    //}
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(0, 0, 50, 50), "GG"))
+        {
+            Application.LoadLevel("區域地圖");
+        }
+    }
 
     /// <summary>
     /// 切換狀態，卡片切換未完成時不可繼續切換

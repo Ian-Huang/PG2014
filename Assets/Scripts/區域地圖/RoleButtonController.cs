@@ -1,41 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RoleButtonController : MonoBehaviour
 {
-    public GameDefinition.SystemPlayerName SystemName;
+    public List<Transform> SaveRoleButtonTransformList; //記錄角色按鈕Transform清單
 
-    public float AmplifyScale;  //放大倍率
-    private float originScale;  //原始倍率
-
-
-
-    void OnMouseEnter()
-    {
-        iTween.ScaleTo(this.gameObject, iTween.Hash(
-                "scale", Vector3.one * this.AmplifyScale,
-                "time", 1
-                ));
-    }
-
-    void OnMouseExit()
-    {
-        iTween.ScaleTo(this.gameObject, iTween.Hash(
-                "scale", Vector3.one * this.originScale,
-                "time", 1
-                ));
-    }
-
-    void OnMouseUpAsButton()
-    {
-
-    }
+    private List<Vector3> roleButtonPositionList;
 
     // Use this for initialization
     void Start()
     {
-        this.originScale = this.transform.localScale.x;     //紀錄原始scale大小
+        //記錄角色按鈕的位置資訊，並額外儲存至另一個List
+        this.roleButtonPositionList = new List<Vector3>();
+        foreach (Transform temp in this.SaveRoleButtonTransformList)
+            this.roleButtonPositionList.Add(temp.position);
 
-        this.GetComponentInChildren<TextMesh>().text = GameDefinition.PlayerNameData[this.SystemName];
+        //提供一個暫時的字典清單，儲存場景上有RoleButton(六位角色資訊)，其代表的系統角色與GameObject   。 (方便下面搜尋使用)
+        Dictionary<GameDefinition.SystemPlayerName, GameObject> tempDic = new Dictionary<GameDefinition.SystemPlayerName, GameObject>();
+        foreach (RoleButton script in GameObject.FindObjectsOfType<RoleButton>())
+            tempDic.Add(script.SystemName, script.gameObject);
+
+        //確認系統儲存的真實角色名字清單
+        int count = 0;
+        foreach (var temp in GameDefinition.PlayerNameData)
+        {
+            //假如為空，代表不使用此角色，將從畫面上刪除
+            if (temp.Value == string.Empty)
+            {
+                Destroy(tempDic[temp.Key].gameObject);
+            }
+            //反之，代表會使用此角色，將角色按鈕移動至設定的第 count 位置 (count 從0開始記數)
+            else
+            {
+                tempDic[temp.Key].gameObject.transform.position = roleButtonPositionList[count];
+                count++;
+            }
+        }
     }
 }
