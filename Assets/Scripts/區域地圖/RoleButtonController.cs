@@ -3,8 +3,12 @@ using System.Collections;
 
 public class RoleButtonController : MonoBehaviour
 {
-    public float AmplifyScale;
-    private float originScale;
+    public GameDefinition.SystemPlayerName SystemName;
+
+    public float AmplifyScale;  //放大倍率
+    private float originScale;  //原始倍率
+
+
 
     void OnMouseEnter()
     {
@@ -31,11 +35,7 @@ public class RoleButtonController : MonoBehaviour
     void Start()
     {
         this.originScale = this.transform.localScale.x;     //紀錄原始scale大小
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        this.GetComponentInChildren<TextMesh>().text = GameDefinition.PlayerNameData[this.SystemName];
     }
 }

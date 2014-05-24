@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 角色選擇控制器(角色選擇場景主要控制者)
+/// </summary>
 public class RoleSelectController : MonoBehaviour
 {
     public List<Transform> SaveRoleCardTransformList;
@@ -20,6 +23,11 @@ public class RoleSelectController : MonoBehaviour
     void Awake()
     {
         script = this;
+
+        // !!!!!進入角色選擇場景後，先清空系統預存名字 (之後會進行比對，當名字為空，則不參與遊戲)!!!!!
+        Dictionary<GameDefinition.SystemPlayerName, string> tempDir = new Dictionary<GameDefinition.SystemPlayerName, string>(GameDefinition.PlayerNameData);
+        foreach (var temp in tempDir.Keys)
+            GameDefinition.PlayerNameData[temp] = string.Empty;
     }
 
     // Use this for initialization
@@ -44,7 +52,6 @@ public class RoleSelectController : MonoBehaviour
                 break;
             }
         }
-
     }
 
     /// <summary>
@@ -56,7 +63,6 @@ public class RoleSelectController : MonoBehaviour
         {
             RoleCard newFirstCard = null;
             RoleCard newLastCard = null;
-            GameObject.FindObjectOfType<RoleNameEnter>().EnterStringEmpty();
 
             foreach (RoleCard temp in this.GetComponentsInChildren<RoleCard>())
             {
@@ -95,6 +101,9 @@ public class RoleSelectController : MonoBehaviour
             Destroy(this.CurrentChooseRoleObject);
             this.CurrentChooseRoleObject = Instantiate(this.CenterCard.RoleObject) as GameObject;
 
+            //名字輸入框文字與腳色姓名確認
+            GameObject.FindObjectOfType<RoleNameEnter>().EnterStringCheck();
+
             //船舵旋轉
             RudderRotate.script.ChangeRotate();
 
@@ -113,7 +122,6 @@ public class RoleSelectController : MonoBehaviour
         {
             RoleCard newLastCard = null;
             RoleCard newFirstCard = null;
-            GameObject.FindObjectOfType<RoleNameEnter>().EnterStringEmpty();
 
             foreach (RoleCard temp in this.GetComponentsInChildren<RoleCard>())
             {
@@ -151,6 +159,9 @@ public class RoleSelectController : MonoBehaviour
             Destroy(this.CurrentChooseRoleObject);
             this.CurrentChooseRoleObject = Instantiate(this.CenterCard.RoleObject) as GameObject;
 
+            //名字輸入框文字與腳色姓名確認
+            GameObject.FindObjectOfType<RoleNameEnter>().EnterStringCheck();
+
             //船舵旋轉
             RudderRotate.script.ChangeRotate();
 
@@ -160,6 +171,33 @@ public class RoleSelectController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 紀錄玩家輸入的名字並儲存到系統
+    /// </summary>
+    public void SavePlayerNameToSystem()
+    {
+        string name = GameObject.FindObjectOfType<RoleNameEnter>().EnterNameString; //玩家輸入的名字字串
+
+        //卡片出現輸入名字
+        this.CenterCard.gameObject.GetComponentInChildren<TextMesh>().text = name;
+
+        //將名字紀錄到系統
+        GameDefinition.PlayerNameData[this.CenterCard.SystemName] = name;
+    }
+
+    //void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(0, 0, 50, 50), "GG"))
+    //    {
+    //        Application.LoadLevel("區域地圖");
+    //    }
+    //}
+
+    /// <summary>
+    /// 切換狀態，卡片切換未完成時不可繼續切換
+    /// </summary>
+    /// <param name="time">切換等待時間(s)</param>
+    /// <returns></returns>
     IEnumerator TimetoChangeBool(float time)
     {
         yield return new WaitForSeconds(time);

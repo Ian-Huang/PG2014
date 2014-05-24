@@ -10,7 +10,13 @@ public class ButtonController : MonoBehaviour
         switch (this.buttonEvent)
         {
             case GameDefinition.ButtonEvent.SureButton_RoleSelect:
-                RoleSelectController.script.CenterCard.gameObject.GetComponentInChildren<TextMesh>().text = GameObject.FindObjectOfType<RoleNameEnter>().EnterNameString;
+                RoleSelectController.script.SavePlayerNameToSystem();
+                break;
+            case GameDefinition.ButtonEvent.RightArrow_RoleSelect:
+                RoleSelectController.script.RunRightCard();
+                break;
+            case GameDefinition.ButtonEvent.LeftArrow_RoleSelect:
+                RoleSelectController.script.RunLeftCard();
                 break;
 
             default:
