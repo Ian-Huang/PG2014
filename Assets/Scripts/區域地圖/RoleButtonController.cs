@@ -33,8 +33,16 @@ public class RoleButtonController : MonoBehaviour
             //反之，代表會使用此角色，將角色按鈕移動至設定的第 count 位置 (count 從0開始記數)
             else
             {
-                tempDic[temp.Key].gameObject.transform.position = roleButtonPositionList[count];
-                count++;
+                tempDic[temp.Key].gameObject.transform.position = roleButtonPositionList[count];    //定位至預設的第count位置
+
+                //設定ITween動畫屬性
+                MoveTo tempScript = tempDic[temp.Key].gameObject.GetComponent<MoveTo>();
+                tempScript.StartPoint.x = roleButtonPositionList[count].x;  //起始位置x值
+                tempScript.EndPoint.x = roleButtonPositionList[count].x;    //結束位置x值
+                tempScript.DelayTime = 0.1f * count;                        //Delay時間 (為了可以看得出有依序出現的感覺)
+                tempScript.Move();      //開始移動
+
+                count++;    //記數加一
             }
         }
     }

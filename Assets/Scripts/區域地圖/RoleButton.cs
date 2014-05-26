@@ -28,7 +28,7 @@ public class RoleButton : MonoBehaviour
 
     void OnMouseUpAsButton()
     {
-
+        print("My name is " + this.SystemName);
     }
 
     // Use this for initialization
