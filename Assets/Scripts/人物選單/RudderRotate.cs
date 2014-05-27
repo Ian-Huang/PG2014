@@ -18,14 +18,23 @@ public class RudderRotate : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.ChangeRotate();
+        this.RightRotate();
     }
 
-    public void ChangeRotate()
+    public void RightRotate()
     {
         this.transform.eulerAngles = Vector3.zero;
         iTween.RotateTo(this.gameObject, iTween.Hash(
                 "z", this.transform.eulerAngles.z - 720,
+                "time", this.RotateTime,
+                "easetype", this.easeType));
+    }
+
+    public void LeftRotate()
+    {
+        this.transform.eulerAngles = Vector3.zero;
+        iTween.RotateTo(this.gameObject, iTween.Hash(
+                "z", this.transform.eulerAngles.z + 720,
                 "time", this.RotateTime,
                 "easetype", this.easeType));
     }

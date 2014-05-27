@@ -107,7 +107,7 @@ public class RoleSelectController : MonoBehaviour
             GameObject.FindObjectOfType<RoleNameEnter>().EnterStringCheck();
 
             //船舵旋轉
-            RudderRotate.script.ChangeRotate();
+            RudderRotate.script.RightRotate();
 
             //切換狀態，卡片切換未完成時不可繼續切換
             this.isChanging = true;
@@ -165,7 +165,7 @@ public class RoleSelectController : MonoBehaviour
             GameObject.FindObjectOfType<RoleNameEnter>().EnterStringCheck();
 
             //船舵旋轉
-            RudderRotate.script.ChangeRotate();
+            RudderRotate.script.LeftRotate();
 
             //切換狀態，卡片切換未完成時不可繼續切換
             this.isChanging = true;
