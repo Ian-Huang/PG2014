@@ -15,11 +15,7 @@ public class EventCollection : MonoBehaviour
     void Awake()
     {
         script = this;
-    }
 
-    // Use this for initialization
-    void Start()
-    {
         foreach (GameObject temp in this.EventList)
             temp.SetActive(false);
 
@@ -36,11 +32,11 @@ public class EventCollection : MonoBehaviour
         this.EventList[this.CurrentEventIndex].SetActive(true);     //開啟新一事件物件
     }
 
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(0, 0, 50, 50), "Test"))
-        {
-            this.NextEvent();
-        }
-    }
+    //void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(0, 0, 50, 50), "Test"))
+    //    {
+    //        this.NextEvent();
+    //    }
+    //}
 }

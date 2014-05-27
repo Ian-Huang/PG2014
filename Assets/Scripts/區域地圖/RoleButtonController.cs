@@ -5,8 +5,15 @@ using System.Collections.Generic;
 public class RoleButtonController : MonoBehaviour
 {
     public List<Transform> SaveRoleButtonTransformList; //記錄角色按鈕Transform清單
+    public GameObject ChoosePropertiesObject;
 
     private List<Vector3> roleButtonPositionList;
+    public static RoleButtonController script;
+
+    void Awake()
+    {
+        script = this;
+    }
 
     // Use this for initialization
     void Start()

@@ -6,11 +6,11 @@ using System.Collections;
 /// </summary>
 public class TextMeshAppear : MonoBehaviour
 {
-    public float AppearTime;    //過程花費時間
-    public float DelayTime;     //延遲時間
-    public bool isNextEvent = false;
+    public float AppearTime;            //過程花費時間
+    public float DelayTime;             //延遲時間
+    public bool isNextEvent = false;    //文字完成後是否進行事件切換 (EventCollection script)
 
-    private bool isComplete;
+    private bool isComplete;    //確認文字出現是否完成
     private TextMesh textMesh;
     private string ShowString;  //儲存字串
 
@@ -33,11 +33,18 @@ public class TextMeshAppear : MonoBehaviour
                 "easetype", iTween.EaseType.linear));
     }
 
+    /// <summary>
+    /// 文字出現Update函式
+    /// </summary>
+    /// <param name="value"></param>
     void TextUpdate(int value)
     {
         this.textMesh.text = this.ShowString.Substring(0, value);
     }
 
+    /// <summary>
+    /// 文字出現完成後呼叫
+    /// </summary>
     void TextComplete()
     {
         this.isComplete = true;
@@ -45,20 +52,22 @@ public class TextMeshAppear : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))  //按下滑鼠左鍵
         {
             if (!this.isComplete)
             {
+                //狀態如未完成，停止ITween動畫並顯示所有文字
                 iTween.StopByName(this.gameObject, "TextAppear");
                 this.textMesh.text = this.ShowString;
                 this.isComplete = true;
             }
             else
             {
+                //判斷是否會進行下一事件切換
                 if (this.isNextEvent)
                 {
-                    EventCollection.script.NextEvent();
-                    this.enabled = false;
+                    EventCollection.script.NextEvent(); //切換下一事件
+                    this.enabled = false;   //關閉此script，避免再度觸發
                 }
             }
         }
