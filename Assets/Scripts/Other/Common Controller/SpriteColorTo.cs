@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public class SpriteColorTo : MonoBehaviour
 {
-    public Color StartColor = new Color(1, 1, 1, 1);    //起始顏色
+    public Color StartColor = new Color(1, 1, 1, 0);    //起始顏色
     public Color EndColor = new Color(1, 1, 1, 1);      //結束顏色
     public float ChangeTime;                            //過程花費時間
     public float DelayTime;                             //延遲

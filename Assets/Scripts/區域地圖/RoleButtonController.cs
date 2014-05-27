@@ -39,7 +39,7 @@ public class RoleButtonController : MonoBehaviour
                 MoveTo tempScript = tempDic[temp.Key].gameObject.GetComponent<MoveTo>();
                 tempScript.StartPoint.x = roleButtonPositionList[count].x;  //起始位置x值
                 tempScript.EndPoint.x = roleButtonPositionList[count].x;    //結束位置x值
-                tempScript.DelayTime = 0.1f * count;                        //Delay時間 (為了可以看得出有依序出現的感覺)
+                tempScript.DelayTime += 0.1f * count;                        //Delay時間 (為了可以看得出有依序出現的感覺)
                 tempScript.Move();      //開始移動
 
                 count++;    //記數加一
