@@ -55,13 +55,34 @@ public class RoleButton : MonoBehaviour
                     ));
             iTween.MoveTo(this.gameObject, iTween.Hash(
                     "position", RoleButtonController.script.ChoosePropertiesObject.transform.position,
-                    "time", 1
+                    "time", 1,
+                    "oncomplete", "ChooseMoveComplete"
                     ));
 
             this.isChoosed = true;  //設定為已被選中
 
-            EventCollection.script.NextEvent();
+
         }
+    }
+
+    void ChooseMoveComplete()
+    {
+        EventCollection.script.NextEvent();
+
+        iTween.ValueTo(this.gameObject, iTween.Hash(
+                "from", 1,
+                "to", 0,
+                "time", 0.75f,
+                "onupdate", "RoleButtonDisappear"));
+    }
+
+    void RoleButtonDisappear(float a)
+    {
+        SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+        TextMesh tm = this.GetComponentInChildren<TextMesh>();
+
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, a);
+        tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, a);
     }
 
     // Use this for initialization
