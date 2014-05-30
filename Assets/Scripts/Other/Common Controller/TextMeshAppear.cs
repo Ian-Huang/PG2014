@@ -12,13 +12,24 @@ public class TextMeshAppear : MonoBehaviour
 
     private bool isComplete;    //確認文字出現是否完成
     private TextMesh textMesh;
-    private string ShowString;  //儲存字串
+    public string ShowString;  //儲存字串
 
     // Use this for initialization
     void Start()
     {
         this.textMesh = this.GetComponent<TextMesh>();
-        this.ShowString = this.textMesh.text;
+
+        //確認是否有掛載系統名字
+        DialogName nameScript = null;
+        if ((nameScript = this.GetComponent<DialogName>()) != null)
+        {
+            if (nameScript.dialogName != GameDefinition.DialogName.None)
+                this.ShowString = nameScript.dialogName.ToString();
+            else
+                this.ShowString = this.textMesh.text;
+        }
+        else
+            this.ShowString = this.textMesh.text;
 
         this.isComplete = false;
         this.textMesh.text = string.Empty;      //字串清空
