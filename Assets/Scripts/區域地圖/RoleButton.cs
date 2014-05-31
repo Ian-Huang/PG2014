@@ -56,6 +56,9 @@ public class RoleButton : MonoBehaviour
                     tempScript.gameObject.SetActive(false);
             }
 
+            //紀錄目前被選擇的腳色
+            GameDefinition.CurrentChoosePlayerName = this.SystemName;
+
             // ITween 動畫， 將被選中的按鈕移動至 預先設定的位置與大小(RoleButtonController scipt 的 ChoosePropertiesObject)
             iTween.ScaleTo(this.gameObject, iTween.Hash(
                     "scale", RoleButtonController.script.ChoosePropertiesObject.transform.localScale,

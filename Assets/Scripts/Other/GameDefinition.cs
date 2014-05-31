@@ -15,10 +15,12 @@ public class GameDefinition
         {SystemPlayerName.翠絲,"翠絲"} , {SystemPlayerName.巴洛,"巴洛"} , {SystemPlayerName.卡勒b,"卡勒b"},
         {SystemPlayerName.里昂,"里昂"} , {SystemPlayerName.莉莉卡,"莉莉卡"} , {SystemPlayerName.葛蘭蒂,"葛蘭蒂"}};
 
+    //紀錄目前被選擇的腳色<參數預設，測試使用>
+    public static SystemPlayerName CurrentChoosePlayerName = SystemPlayerName.翠絲;
+
     //按鈕事件
     public enum ButtonEvent
     {
-
         //角色選擇場景
         SureButton_RoleSelect = 1000, LeftArrow_RoleSelect = 1001, RightArrow_RoleSelect = 1002
     }
@@ -30,10 +32,10 @@ public class GameDefinition
 
     public enum DialogName
     {
-        None = 0,
+        None = 0, 被選角色名 = 1,
 
         //主角群----
-        翠絲 = 11, 巴洛 = 12, 卡勒b = 13, 里昂 = 14, 莉莉卡 = 15, 葛蘭蒂 = 16,
+        //翠絲 = 11, 巴洛 = 12, 卡勒b = 13, 里昂 = 14, 莉莉卡 = 15, 葛蘭蒂 = 16,
 
         //NPC----
         卡片收集者 = 21, 知識通 = 22, 警長 = 23, 小偷 = 24, //第一座島嶼

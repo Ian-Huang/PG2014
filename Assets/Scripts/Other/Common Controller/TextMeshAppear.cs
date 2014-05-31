@@ -19,17 +19,7 @@ public class TextMeshAppear : MonoBehaviour
     {
         this.textMesh = this.GetComponent<TextMesh>();
 
-        //確認是否有掛載系統名字
-        DialogName nameScript = null;
-        if ((nameScript = this.GetComponent<DialogName>()) != null)
-        {
-            if (nameScript.dialogName != GameDefinition.DialogName.None)
-                this.ShowString = nameScript.dialogName.ToString();
-            else
-                this.ShowString = this.textMesh.text;
-        }
-        else
-            this.ShowString = this.textMesh.text;
+        this.ShowString = this.textMesh.text;
 
         this.isComplete = false;
         this.textMesh.text = string.Empty;      //字串清空

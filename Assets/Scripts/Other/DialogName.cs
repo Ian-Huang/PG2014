@@ -6,16 +6,27 @@ public class DialogName : MonoBehaviour
 {
     public GameDefinition.DialogName dialogName;
 
+    public float DelayTime;
+
     // Use this for initialization
-    void Start()
+    IEnumerator Start()
     {
-        //if (this.dialogName != GameDefinition.DialogName.None)
-        //    this.GetComponent<TextMeshAppear>().ShowString = this.dialogName.ToString();
-    }
+        this.GetComponent<TextMesh>().text = "";
+        yield return new WaitForSeconds(this.DelayTime);
 
-    // Update is called once per frame
-    void Update()
-    {
+        if (this.dialogName != GameDefinition.DialogName.None)
+            this.GetComponent<TextMesh>().text = this.dialogName.ToString();
 
+        switch (this.dialogName)
+        {
+            case GameDefinition.DialogName.None:
+                break;
+            case GameDefinition.DialogName.被選角色名:
+                this.GetComponent<TextMesh>().text = GameDefinition.CurrentChoosePlayerName.ToString();
+                break;
+            default:
+                this.GetComponent<TextMesh>().text = this.dialogName.ToString();
+                break;
+        }
     }
 }

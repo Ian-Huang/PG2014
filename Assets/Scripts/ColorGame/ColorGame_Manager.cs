@@ -40,6 +40,7 @@ public class ColorGame_Manager : MonoBehaviour
 
         this.word = this.ColorDataList[this.currentColorNameIndex].ColorName;
         this.style.normal.textColor = this.ColorDataList[this.currentColorValueIndex].ColorValue;
+        Camera.main.backgroundColor = this.ColorDataList[Random.Range(0, this.ColorDataList.Count)].ColorValue;
     }
 
     void OnGUI()
