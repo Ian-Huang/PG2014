@@ -61,11 +61,11 @@ public class RoleButton : MonoBehaviour
 
             // ITween 動畫， 將被選中的按鈕移動至 預先設定的位置與大小(RoleButtonController scipt 的 ChoosePropertiesObject)
             iTween.ScaleTo(this.gameObject, iTween.Hash(
-                    "scale", RoleButtonController.script.ChoosePropertiesObject.transform.localScale,
+                    "scale", RoleButtonManager.script.ChoosePropertiesObject.transform.localScale,
                     "time", 1
                     ));
             iTween.MoveTo(this.gameObject, iTween.Hash(
-                    "position", RoleButtonController.script.ChoosePropertiesObject.transform.position,
+                    "position", RoleButtonManager.script.ChoosePropertiesObject.transform.position,
                     "time", 1,
                     "oncomplete", "ChooseMoveComplete"      //動畫完成後 callback
                     ));
@@ -86,7 +86,7 @@ public class RoleButton : MonoBehaviour
                 "from", 1,
                 "to", 0,
                 "time", 0.75f,
-                "onupdate", "RoleButtonDisappear"   //動畫完成後 callback
+                "onupdate", "RoleButtonDisappear"   //動畫進行 callback
                 ));
     }
 

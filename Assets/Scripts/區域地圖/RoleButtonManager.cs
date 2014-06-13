@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RoleButtonController : MonoBehaviour
+public class RoleButtonManager : MonoBehaviour
 {
     public List<Transform> SaveRoleButtonTransformList; //記錄角色按鈕Transform清單
     public GameObject ChoosePropertiesObject;
 
     private List<Vector3> roleButtonPositionList;
-    public static RoleButtonController script;
+    public static RoleButtonManager script;
 
     void Awake()
     {
