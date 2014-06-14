@@ -6,6 +6,8 @@ using System.Collections;
 /// </summary>
 public class NPC : MonoBehaviour
 {
+    public GameDefinition.MissionName Mission;
+    
     public float AmplifyScale;  //放大倍率
     private float originScale;  //原始倍率
 
