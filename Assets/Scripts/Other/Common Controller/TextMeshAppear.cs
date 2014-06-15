@@ -14,15 +14,39 @@ public class TextMeshAppear : MonoBehaviour
     private TextMesh textMesh;
     public string ShowString;  //儲存字串
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         this.textMesh = this.GetComponent<TextMesh>();
-
         this.ShowString = this.textMesh.text;
+    }
 
+
+    void OnEnable()
+    {
         this.isComplete = false;
         this.textMesh.text = string.Empty;      //字串清空
+        iTween.ValueTo(this.gameObject, iTween.Hash(
+                "name", "TextAppear",
+                "from", 0,
+                "to", this.ShowString.Length,
+                "time", this.AppearTime,
+                "delay", this.DelayTime,
+                "onupdate", "TextUpdate",
+                "oncomplete", "TextComplete",
+                "easetype", iTween.EaseType.linear));
+    }
+
+    /// <summary>
+    /// 重設新字串，並重製動畫
+    /// </summary>
+    /// <param name="text">新文字</param>
+    public void ResetText(string text)
+    {
+        this.isComplete = false;
+        this.ShowString = text;
+        this.textMesh.text = string.Empty;      //字串清空
+
+        iTween.StopByName("TextAppear");
         iTween.ValueTo(this.gameObject, iTween.Hash(
                 "name", "TextAppear",
                 "from", 0,
@@ -53,7 +77,7 @@ public class TextMeshAppear : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))  //按下滑鼠左鍵
+        if (Input.GetMouseButtonDown(0))  //按下滑鼠左鍵
         {
             if (!this.isComplete)
             {

@@ -18,11 +18,17 @@ public class GameDefinition
     //紀錄目前被選擇的腳色<參數預設，測試使用>
     public static SystemPlayerName CurrentChoosePlayerName = SystemPlayerName.翠絲;
 
+    //紀錄目前選擇的任務
+    public static Mission CurrentChooseMission = Mission.None;
+
     //按鈕事件
     public enum ButtonEvent
     {
         //角色選擇場景
-        SureButton_RoleSelect = 1000, LeftArrow_RoleSelect = 1001, RightArrow_RoleSelect = 1002
+        SureButton_RoleSelect = 1000, LeftArrow_RoleSelect = 1001, RightArrow_RoleSelect = 1002,
+
+        //區域地圖場景
+        MissionSure_Area = 2000 , MissionCancel_Area = 2001
     }
 
     public enum SystemPlayerName
@@ -43,8 +49,9 @@ public class GameDefinition
         小畫家 = 41, 著名歌手 = 42, 音樂家 = 43, 村長 = 44 //第三座島嶼
     }
 
-    public enum MissionName
+    public enum Mission
     {
+        None = 0,
         //(智慧)莎吉斯島
         卡片掉了 = 11, 黃綠紅 = 12, 知識通 = 13, 推理要在晚餐後 = 14, 消失的羅盤 = 15,
 

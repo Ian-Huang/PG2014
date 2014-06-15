@@ -8,8 +8,13 @@ public class DialogName : MonoBehaviour
 
     public float DelayTime;
 
+    void OnEnable()
+    {
+        StartCoroutine(NameShow());
+    }
+
     // Use this for initialization
-    IEnumerator Start()
+    IEnumerator NameShow()
     {
         this.GetComponent<TextMesh>().text = "";
         yield return new WaitForSeconds(this.DelayTime);

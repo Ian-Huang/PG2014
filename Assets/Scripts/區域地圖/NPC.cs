@@ -6,8 +6,8 @@ using System.Collections;
 /// </summary>
 public class NPC : MonoBehaviour
 {
-    public GameDefinition.MissionName Mission;
-    
+    public GameDefinition.Mission Mission;
+
     public float AmplifyScale;  //放大倍率
     private float originScale;  //原始倍率
 
@@ -60,11 +60,27 @@ public class NPC : MonoBehaviour
     {
         if (!this.isChoosed)
         {
-            foreach (NPC tempScript in this.transform.parent.GetComponentsInChildren<NPC>())
-            {
+            //將所有 NPC 設為被選擇，避免被誤觸
+            foreach (NPC tempScript in this.transform.parent.GetComponentsInChildren<NPC>())            
                 tempScript.isChoosed = true;    //設定為已被選中
-            }
+            
+            EventCollection.script.NextEvent();     //切換下一事件
+
+            //紀錄目前被選擇的任務名
+            GameDefinition.CurrentChooseMission = this.Mission;
+            //設定 目前被選任務名的詢問對話
+            GameObject.FindObjectOfType<TextMeshAppear>().ResetText("確定要進行" + "\"" + this.Mission + "\"" + "任務嗎？");
         }
+    }
+
+    /// <summary>
+    /// 重設所有狀態， 回復原始大小、被選狀態取消、圖片回到Normal
+    /// </summary>
+    public void Reset()
+    {
+        this.transform.localScale = Vector3.one * this.originScale;
+        this.GetComponent<SpriteRenderer>().sprite = this.Normal_Sprite;
+        this.isChoosed = false;
     }
 
     // Use this for initialization

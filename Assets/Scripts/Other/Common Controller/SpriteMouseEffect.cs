@@ -16,7 +16,7 @@ public class SpriteMouseEffect : MonoBehaviour
         this.GetComponent<SpriteRenderer>().sprite = this.NormalSprite;
     }
 
-    void Start()
+    void OnEnable()
     {
         this.GetComponent<SpriteRenderer>().sprite = this.NormalSprite;
     }

@@ -32,6 +32,16 @@ public class EventCollection : MonoBehaviour
         this.EventList[this.CurrentEventIndex].SetActive(true);     //開啟新一事件物件
     }
 
+    /// <summary>
+    /// 切換至上一事件
+    /// </summary>
+    public void BackEvent()
+    {
+        this.EventList[this.CurrentEventIndex].SetActive(false);    //關閉目前事件物件
+        this.CurrentEventIndex--;
+        this.EventList[this.CurrentEventIndex].SetActive(true);     //開啟前一事件物件
+    }
+
     //void OnGUI()
     //{
     //    if (GUI.Button(new Rect(0, 0, 50, 50), "Test"))
