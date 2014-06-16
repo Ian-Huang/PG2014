@@ -14,7 +14,14 @@ public class RoleActionController : MonoBehaviour
         this.GetComponent<MoveTo>().Move();
         yield return new WaitForSeconds(this.GetComponent<MoveTo>().MoveTime);
         this.boneAnimation.Play("idle");
-        iTween.Stop(RudderRotate.script.gameObject);
+
+        if (RudderRotate.script != null)
+            iTween.Stop(RudderRotate.script.gameObject);
+
+        if (NPCTalkingManager.script != null)
+        {
+            NPCTalkingManager.script.NextTalk();
+        }
     }
 
     void RoleColorTo(Color c)

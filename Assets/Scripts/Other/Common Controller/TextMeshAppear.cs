@@ -8,7 +8,8 @@ public class TextMeshAppear : MonoBehaviour
 {
     public float AppearTime;            //過程花費時間
     public float DelayTime;             //延遲時間
-    public bool isNextEvent = false;    //文字完成後是否進行事件切換 (EventCollection script)
+    public EndToDo endToDo;             //文字完成後，確認要做甚麼事情
+    //public bool isNextEvent = false;    //文字完成後是否進行事件切換 (EventCollection script)
 
     private bool isComplete;    //確認文字出現是否完成
     private TextMesh textMesh;
@@ -88,13 +89,30 @@ public class TextMeshAppear : MonoBehaviour
             }
             else
             {
-                //判斷是否會進行下一事件切換
-                if (this.isNextEvent)
+                switch (this.endToDo)
                 {
-                    EventCollection.script.NextEvent(); //切換下一事件
-                    this.enabled = false;   //關閉此script，避免再度觸發
+                    case EndToDo.Nothing:
+                        break;
+                    case EndToDo.NextEvent:
+                        EventCollection.script.NextEvent(); //切換下一事件
+                        this.enabled = false;   //關閉此script，避免再度觸發
+                        break;
+                    case EndToDo.NPCTalkNextContent:
+                        NPCTalkingManager.script.NextTalk();
+                        break;
+                    case EndToDo.EnterGame:
+                        break;
+                    default:
+                        break;
                 }
             }
         }
+    }
+
+    public enum EndToDo
+    {
+        Nothing = 0,
+        NextEvent = 1,
+        NPCTalkNextContent = 2 , EnterGame = 3
     }
 }

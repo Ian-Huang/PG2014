@@ -19,7 +19,7 @@ public class ButtonController : MonoBehaviour
                 RoleSelectController.script.RunLeftCard();
                 break;
             case GameDefinition.ButtonEvent.MissionSure_Area:   //選擇任務確認:確定
-                GameObject.FindObjectOfType<CameraChangeBackground>().ToMissionBackground();
+                GameObject.FindObjectOfType<NPCTalkingManager>().ToMissionBackground();
                 break;
             case GameDefinition.ButtonEvent.MissionCancel_Area: //選擇任務確認:取消
                 EventCollection.script.BackEvent(); //退回前一事件(選NPC任務)
