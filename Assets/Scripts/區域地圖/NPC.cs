@@ -7,6 +7,7 @@ using System.Collections;
 public class NPC : MonoBehaviour
 {
     public GameDefinition.Mission Mission;
+    public GameDefinition.GameType Gametype;
 
     public float AmplifyScale;  //放大倍率
     private float originScale;  //原始倍率
@@ -61,13 +62,16 @@ public class NPC : MonoBehaviour
         if (!this.isChoosed)
         {
             //將所有 NPC 設為被選擇，避免被誤觸
-            foreach (NPC tempScript in this.transform.parent.GetComponentsInChildren<NPC>())            
+            foreach (NPC tempScript in this.transform.parent.GetComponentsInChildren<NPC>())
                 tempScript.isChoosed = true;    //設定為已被選中
-            
+
             EventCollection.script.NextEvent();     //切換下一事件
 
             //紀錄目前被選擇的任務名
             GameDefinition.CurrentChooseMission = this.Mission;
+            //紀錄目前選擇的遊戲類型
+            GameDefinition.CurrentChooseGameType = this.Gametype;
+
             //設定 目前被選任務名的詢問對話
             GameObject.FindObjectOfType<TextMeshAppear>().ResetText("確定要進行" + "\"" + this.Mission + "\"" + "任務嗎？");
         }

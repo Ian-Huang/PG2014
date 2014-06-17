@@ -20,6 +20,9 @@ public class GameDefinition
 
     //紀錄目前選擇的任務
     public static Mission CurrentChooseMission = Mission.None;
+    //紀錄目前選擇的遊戲類型
+    public static GameType CurrentChooseGameType = GameType.None;
+
 
     //按鈕事件
     public enum ButtonEvent
@@ -28,7 +31,9 @@ public class GameDefinition
         SureButton_RoleSelect = 1000, LeftArrow_RoleSelect = 1001, RightArrow_RoleSelect = 1002,
 
         //區域地圖場景
-        MissionSure_Area = 2000 , MissionCancel_Area = 2001
+        MissionSure_Area = 2000, MissionCancel_Area = 2001,
+        GameStart = 2002
+        
     }
 
     public enum SystemPlayerName
@@ -49,6 +54,9 @@ public class GameDefinition
         小畫家 = 41, 著名歌手 = 42, 音樂家 = 43, 村長 = 44 //第三座島嶼
     }
 
+    /// <summary>
+    /// 任務種類
+    /// </summary>
     public enum Mission
     {
         None = 0,
@@ -60,5 +68,15 @@ public class GameDefinition
 
         //(自信)康費爾森島
         我要成為畢卡索 = 31, 筆墨登場 = 32, 你是我的眼 = 33, 未填詞 = 34, 混亂的程序 = 35
+    }
+
+    /// <summary>
+    /// 遊戲種類
+    /// </summary>
+    public enum GameType
+    {
+        None = 0,
+        記憶對對碰 = 1, 顏不及意 = 2, 快問快答 = 3, 推理要在晚餐後 = 4, 支援前線 = 5,
+        大家來找碴 = 6, 歌喉戰 = 7, 比手畫腳 = 8, 人人都是畢卡索 = 9, 團體戰 = 10
     }
 }

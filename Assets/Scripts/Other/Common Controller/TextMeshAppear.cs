@@ -89,6 +89,7 @@ public class TextMeshAppear : MonoBehaviour
             }
             else
             {
+                //根據不同的指定結尾來處理後續內容
                 switch (this.endToDo)
                 {
                     case EndToDo.Nothing:
@@ -101,6 +102,7 @@ public class TextMeshAppear : MonoBehaviour
                         NPCTalkingManager.script.NextTalk();
                         break;
                     case EndToDo.EnterGame:
+                        GameCollection.script.GameOpening();
                         break;
                     default:
                         break;
@@ -113,6 +115,6 @@ public class TextMeshAppear : MonoBehaviour
     {
         Nothing = 0,
         NextEvent = 1,
-        NPCTalkNextContent = 2 , EnterGame = 3
+        NPCTalkNextContent = 2, EnterGame = 3
     }
 }
