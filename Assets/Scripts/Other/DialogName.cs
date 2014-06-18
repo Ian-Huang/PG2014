@@ -19,9 +19,6 @@ public class DialogName : MonoBehaviour
         this.GetComponent<TextMesh>().text = "";
         yield return new WaitForSeconds(this.DelayTime);
 
-        if (this.dialogName != GameDefinition.DialogName.None)
-            this.GetComponent<TextMesh>().text = this.dialogName.ToString();
-
         switch (this.dialogName)
         {
             case GameDefinition.DialogName.None:
