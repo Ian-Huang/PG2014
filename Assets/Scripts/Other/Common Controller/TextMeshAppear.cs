@@ -46,8 +46,7 @@ public class TextMeshAppear : MonoBehaviour
         this.isComplete = false;
         this.ShowString = text;
         this.textMesh.text = string.Empty;      //字串清空
-
-        iTween.StopByName("TextAppear");
+        iTween.StopByName(this.gameObject, "TextAppear");
         iTween.ValueTo(this.gameObject, iTween.Hash(
                 "name", "TextAppear",
                 "from", 0,

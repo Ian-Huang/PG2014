@@ -24,7 +24,7 @@ public class DialogName : MonoBehaviour
             case GameDefinition.DialogName.None:
                 break;
             case GameDefinition.DialogName.被選角色名:
-                this.GetComponent<TextMesh>().text = GameDefinition.CurrentChoosePlayerName.ToString();
+                this.GetComponent<TextMesh>().text = GameDefinition.PlayerNameData[GameDefinition.CurrentChoosePlayerName];
                 break;
             default:
                 this.GetComponent<TextMesh>().text = this.dialogName.ToString();

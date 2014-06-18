@@ -189,7 +189,7 @@ public class RoleSelectController : MonoBehaviour
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(0, 0, 50, 50), "GG"))
+        if (GUI.Button(new Rect(0, 0, 100, 50), "開始遊戲"))
         {
             Application.LoadLevel("區域地圖");
         }
