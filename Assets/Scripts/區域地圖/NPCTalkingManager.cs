@@ -7,12 +7,11 @@ public class NPCTalkingManager : MonoBehaviour
     public GameObject BackgroundObject; //背景物件(將會根據不同任務作圖片切換)
     public float CameraMoveOffsetX;     //轉場Camera X 位置量
 
-    public GameObject SpecialNPC_Chef;  //特殊NPC
+    public GameObject SpecialNPC_Chef;  //特殊NPC 甜點師(奶油水果派任務使用)
 
     public List<TalkingData> TalkingDataList;   //所有任務對話清單
     [HideInInspector]
     public TalkingData CurrentTalkingData;  //當前任務對話資訊
-
     public int CurrentTalkIndex = 0;    //紀錄目前對話索引值
 
     public static NPCTalkingManager script;
@@ -60,9 +59,12 @@ public class NPCTalkingManager : MonoBehaviour
     {
         if (this.CurrentTalkIndex != 0)
         {
+            // 特別任務：奶油水果派 在貪吃鬼講完話後觸發
             if (GameDefinition.CurrentChooseMission == GameDefinition.Mission.奶油水果派 && this.CurrentTalkIndex == 1)
             {
+                //開啟甜點師
                 this.SpecialNPC_Chef.SetActive(true);
+                //旋轉甜點師
                 iTween.RotateTo(this.SpecialNPC_Chef, iTween.Hash(
                     "y", 2160,
                     "time", 1,

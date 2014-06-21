@@ -9,6 +9,7 @@ public class RoleActionController : MonoBehaviour
     // Use this for initialization
     IEnumerator Start()
     {
+        //播放走路音效
         this.audio.Play();
         this.boneAnimation = this.GetComponent<SmoothMoves.BoneAnimation>();
         this.boneAnimation.playAutomatically = false;
@@ -17,7 +18,9 @@ public class RoleActionController : MonoBehaviour
 
         yield return new WaitForSeconds(this.GetComponent<MoveTo>().MoveTime);
 
+        //停止走路音效
         this.audio.Stop();
+        //播放 idle動作
         this.boneAnimation.Play("idle");
 
         //選角頁面使用
@@ -38,7 +41,9 @@ public class RoleActionController : MonoBehaviour
                     "x", NPCTalkingManager.script.CurrentTalkingData.NPCObject.transform.position.x - 4,
                     "time", 0.75f));
 
+                //產生碰撞音效
                 this.audio.PlayOneShot(this.碰撞音效);
+                //動作佇列 (卡片掉->Idle2)
                 NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().Play("carddrop");
                 NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().PlayQueued("idle2");
             }
