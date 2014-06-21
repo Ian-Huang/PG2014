@@ -7,6 +7,8 @@ public class NPCTalkingManager : MonoBehaviour
     public GameObject BackgroundObject; //背景物件(將會根據不同任務作圖片切換)
     public float CameraMoveOffsetX;     //轉場Camera X 位置量
 
+    public GameObject SpecialNPC_Chef;  //特殊NPC
+
     public List<TalkingData> TalkingDataList;   //所有任務對話清單
     [HideInInspector]
     public TalkingData CurrentTalkingData;  //當前任務對話資訊
@@ -58,6 +60,15 @@ public class NPCTalkingManager : MonoBehaviour
     {
         if (this.CurrentTalkIndex != 0)
         {
+            if (GameDefinition.CurrentChooseMission == GameDefinition.Mission.奶油水果派 && this.CurrentTalkIndex == 1)
+            {
+                this.SpecialNPC_Chef.SetActive(true);
+                iTween.RotateTo(this.SpecialNPC_Chef, iTween.Hash(
+                    "y", 2160,
+                    "time", 1,
+                    "easetype", iTween.EaseType.easeOutQuad
+                ));
+            }
             this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex - 1].SetActive(false);    //關閉前一事件物件            
             this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex].SetActive(true);     //開啟新一事件物件
             this.CurrentTalkIndex++;
