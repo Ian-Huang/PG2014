@@ -34,7 +34,7 @@ public class RoleActionController : MonoBehaviour
             {
                 //鏡頭震動
                 iTween.ShakePosition(Camera.main.gameObject, iTween.Hash(
-                    "amount", new Vector3(0, 1, 1) * 0.5f,
+                    "amount", new Vector3(0, 1, 1) ,
                     "time", 0.75f));
                 //NPC 撞飛
                 iTween.MoveTo(NPCTalkingManager.script.CurrentTalkingData.NPCObject, iTween.Hash(

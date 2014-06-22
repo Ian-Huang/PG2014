@@ -102,6 +102,11 @@ public class TextMeshAppear : MonoBehaviour
                         break;
                     case EndToDo.EnterGame:
                         GameCollection.script.GameOpening();
+                        this.enabled = false;   //關閉此script，避免再度觸發
+                        break;
+                    case EndToDo.ExitMission:
+                        NPCTalkingManager.script.ExitMissionTalking();
+                        this.enabled = false;   //關閉此script，避免再度觸發
                         break;
                     default:
                         break;
@@ -114,6 +119,6 @@ public class TextMeshAppear : MonoBehaviour
     {
         Nothing = 0,
         NextEvent = 1,
-        NPCTalkNextContent = 2, EnterGame = 3
+        NPCTalkNextContent = 2, EnterGame = 3 , ExitMission = 4
     }
 }

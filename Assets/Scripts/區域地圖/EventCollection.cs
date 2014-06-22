@@ -9,7 +9,7 @@ public class EventCollection : MonoBehaviour
 {
     public List<GameObject> EventList;  //儲存事件清單
     public int CurrentEventIndex;       //目前事件索引
-
+    
     public static EventCollection script;
 
     void Awake()

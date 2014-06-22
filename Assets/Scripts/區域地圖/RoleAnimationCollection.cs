@@ -37,6 +37,11 @@ public class RoleAnimationCollection : MonoBehaviour
         });
     }
 
+    public void RoleDisappear()
+    {
+        Destroy(this.CurrentCloneRoleObject);
+    }
+
     [System.Serializable]
     public class RoleData
     {

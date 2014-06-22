@@ -32,8 +32,8 @@ public class GameDefinition
 
         //區域地圖場景
         MissionSure_Area = 2000, MissionCancel_Area = 2001,
-        GameStart = 2002
-        
+        GameStart = 3000,
+        GameEnd = 4000, GameEnd_卡片掉了 = 4001
     }
 
     public enum SystemPlayerName

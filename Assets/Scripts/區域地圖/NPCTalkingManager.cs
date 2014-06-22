@@ -23,6 +23,7 @@ public class NPCTalkingManager : MonoBehaviour
                  "x", Camera.main.gameObject.transform.position.x + this.CameraMoveOffsetX,
                  "time", 1.25f,
                  "oncomplete", "MoveComplete",
+                 "oncompleteparams", NPCTalkType.Enter,
                  "oncompletetarget", this.gameObject
                  ));
 
@@ -38,18 +39,48 @@ public class NPCTalkingManager : MonoBehaviour
         //設定目前任務對話"背景"和"對話NPC"
         this.BackgroundObject.GetComponent<SpriteRenderer>().sprite = this.CurrentTalkingData.BackgroundSprite;
         this.CurrentTalkingData.NPCObject.SetActive(true);
+
+        this.CurrentTalkIndex = 0;
     }
 
-    void MoveComplete()
+    public void ExitMissionTalking()
     {
-        //假如有旁白，對話框與腳色同時出現
-        if (this.CurrentTalkingData.Mission == GameDefinition.Mission.卡片掉了)
-        {
-            this.NextTalk();
-        }
+        //轉場
+        iTween.MoveTo(Camera.main.gameObject, iTween.Hash(
+                 "x", Camera.main.gameObject.transform.position.x - this.CameraMoveOffsetX,
+                 "time", 1.25f,
+                 "oncomplete", "MoveComplete",
+                 "oncompleteparams", NPCTalkType.Exit,
+                 "oncompletetarget", this.gameObject
+                 ));
 
-        //Role 出場 
-        RoleAnimationCollection.script.RoleAppear(GameDefinition.CurrentChoosePlayerName);
+        //關閉當前任務所有對話內容
+        this.CurrentTalkingData.BeginTalkContentList[0].transform.parent.gameObject.SetActive(false);
+
+        ////
+        //GameObject o = EventCollection.script.gameObject;
+        //Instantiate(EventCollection.script.gameObject);
+        //Destroy(o);
+    }
+
+    void MoveComplete(NPCTalkType type)
+    {
+        //在進入任務對話轉場完成後
+        if (type == NPCTalkType.Enter)
+        {
+            //假如有旁白，對話框與腳色同時出現
+            if (this.CurrentTalkingData.Mission == GameDefinition.Mission.卡片掉了)            
+                this.NextTalk();
+            
+            //Role 出場 
+            RoleAnimationCollection.script.RoleAppear(GameDefinition.CurrentChoosePlayerName);
+        }
+        //在離開任務對話轉場完成後
+        else
+        {
+            RoleAnimationCollection.script.RoleDisappear();
+            this.CurrentTalkingData.NPCObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -59,7 +90,8 @@ public class NPCTalkingManager : MonoBehaviour
     {
         if (this.CurrentTalkIndex != 0)
         {
-            // 特別任務：奶油水果派 在貪吃鬼講完話後觸發
+            // --------特別任務：奶油水果派 ------------
+            // 在貪吃鬼講完話後觸發
             if (GameDefinition.CurrentChooseMission == GameDefinition.Mission.奶油水果派 && this.CurrentTalkIndex == 1)
             {
                 //開啟甜點師
@@ -71,13 +103,15 @@ public class NPCTalkingManager : MonoBehaviour
                     "easetype", iTween.EaseType.easeOutQuad
                 ));
             }
-            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex - 1].SetActive(false);    //關閉前一事件物件            
-            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex].SetActive(true);     //開啟新一事件物件
+            // --------特別任務：奶油水果派 ------------
+
+            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex - 1].SetActive(false);   //關閉前一事件物件            
+            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex].SetActive(true);        //開啟新一事件物件
             this.CurrentTalkIndex++;
         }
         else
         {
-            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex].SetActive(true);     //開啟新一事件物件
+            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex].SetActive(true);        //開啟新一事件物件
             this.CurrentTalkIndex++;
         }
     }
@@ -94,5 +128,10 @@ public class NPCTalkingManager : MonoBehaviour
         public GameObject NPCObject;
         public Sprite BackgroundSprite;
         public List<GameObject> BeginTalkContentList;
+    }
+
+    public enum NPCTalkType
+    {
+        Enter  ,Exit
     }
 }

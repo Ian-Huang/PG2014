@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameCollection : MonoBehaviour
 {
     public List<GameData> GameDataList;
-    public GameObject CurrentCloneGameObject;   //目前對話腳色(複製)
+
     [HideInInspector]
     public GameData CurrentGameData;  //當前遊戲資訊
 
@@ -40,8 +40,15 @@ public class GameCollection : MonoBehaviour
         //開啟遊戲物件
         this.CurrentGameData.Game_Object.SetActive(true);
 
+        // Check : 先將所有遊戲階段物件關閉
+        foreach (var temp in this.CurrentGameData.GameStepList)
+            temp.SetActive(false);
+
         //遊戲階段索引值從0開始
         this.CurrentGameStepIndex = 0;
+
+        //開啟第一階段遊戲物件
+        this.CurrentGameData.GameStepList[this.CurrentGameStepIndex].SetActive(true);
     }
 
     /// <summary>

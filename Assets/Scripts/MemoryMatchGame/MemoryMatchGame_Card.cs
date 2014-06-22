@@ -20,7 +20,7 @@ public class MemoryMatchGame_Card : MonoBehaviour
     void Start()
     {
         this.isRotating = false;
-        this.canRotate = true;
+        this.canRotate = false;
 
         //確認 FaceType 狀態與卡片方向一致
         if (this.GetComponent<SpriteRenderer>().sprite == this.Card_Back)
@@ -120,6 +120,9 @@ public class MemoryMatchGame_Card : MonoBehaviour
 
                     //MemoryMatchGame_Manager 播放正確音效
                     MemoryMatchGame_Manager.script.PlaySound(MemoryMatchGame_Manager.SoundType.MatchCorrect);
+
+                    //檢查是否全部翻完
+                    MemoryMatchGame_Manager.script.CheckCardOK();
 
                     //配對正確後....(未完成)
                 }
