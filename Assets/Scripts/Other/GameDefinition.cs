@@ -23,6 +23,15 @@ public class GameDefinition
     //紀錄目前選擇的遊戲類型
     public static GameType CurrentChooseGameType = GameType.None;
 
+    //任務被觸發的狀況 false = 未進行該任務 <目前為預設值>
+    public static Dictionary<Mission, bool> MissionActiveStateMapping = new Dictionary<Mission, bool>() { 
+        //(智慧)莎吉斯島
+        {Mission.卡片掉了,false} ,{Mission.黃綠紅,false},{Mission.知識通,false},{Mission.推理要在晚餐後,false},{Mission.消失的羅盤,false},
+        //(勇氣)布列德島
+        {Mission.奶油水果派,false} ,{Mission.給我食譜,false},{Mission.我的船壞了,false},{Mission.在我的歌聲裡,false},{Mission.你怎麼連話都說不清楚,false},
+        //(自信)康費爾森島
+        {Mission.我要成為畢卡索,false} ,{Mission.筆墨登場,false},{Mission.你是我的眼,false},{Mission.未填詞,false},{Mission.混亂的程序,false}};
+
 
     //按鈕事件
     public enum ButtonEvent
@@ -61,13 +70,13 @@ public class GameDefinition
     {
         None = 0,
         //(智慧)莎吉斯島
-        卡片掉了 = 11, 黃綠紅 = 12, 知識通 = 13, 推理要在晚餐後 = 14, 消失的羅盤 = 15,
+        卡片掉了 = 11, 黃綠紅 = 12, 知識通 = 13, 推理要在晚餐後 = 14, 消失的羅盤 = 15,    //關鍵任務：推理要在晚餐後
 
         //(勇氣)布列德島
-        奶油水果派 = 21, 給我食譜 = 22, 我的船壞了 = 23, 在我的歌聲裡 = 24, 你怎麼連話都說不清楚 = 25,
+        奶油水果派 = 21, 給我食譜 = 22, 我的船壞了 = 23, 在我的歌聲裡 = 24, 你怎麼連話都說不清楚 = 25,    //關鍵任務：你怎麼連話都說不清楚
 
         //(自信)康費爾森島
-        我要成為畢卡索 = 31, 筆墨登場 = 32, 你是我的眼 = 33, 未填詞 = 34, 混亂的程序 = 35
+        我要成為畢卡索 = 31, 筆墨登場 = 32, 你是我的眼 = 33, 未填詞 = 34, 混亂的程序 = 35   //關鍵任務：混亂的程序
     }
 
     /// <summary>
@@ -78,5 +87,10 @@ public class GameDefinition
         None = 0,
         記憶對對碰 = 1, 顏不及意 = 2, 快問快答 = 3, 推理要在晚餐後 = 4, 支援前線 = 5,
         大家來找碴 = 6, 歌喉戰 = 7, 比手畫腳 = 8, 人人都是畢卡索 = 9, 團體戰 = 10
+    }
+
+    public enum Island
+    {
+        莎吉斯島 = 1, 布列德島 = 2, 康費爾森島 = 3
     }
 }

@@ -9,7 +9,7 @@ public class EventCollection : MonoBehaviour
 {
     public List<GameObject> EventList;  //儲存事件清單
     public int CurrentEventIndex;       //目前事件索引
-    
+
     public static EventCollection script;
 
     void Awake()
@@ -41,12 +41,4 @@ public class EventCollection : MonoBehaviour
         this.CurrentEventIndex--;
         this.EventList[this.CurrentEventIndex].SetActive(true);     //開啟前一事件物件
     }
-
-    //void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(0, 0, 50, 50), "Test"))
-    //    {
-    //        this.NextEvent();
-    //    }
-    //}
 }

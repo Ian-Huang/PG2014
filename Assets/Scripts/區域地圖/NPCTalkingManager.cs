@@ -57,10 +57,8 @@ public class NPCTalkingManager : MonoBehaviour
         //關閉當前任務所有對話內容
         this.CurrentTalkingData.BeginTalkContentList[0].transform.parent.gameObject.SetActive(false);
 
-        ////
-        //GameObject o = EventCollection.script.gameObject;
-        //Instantiate(EventCollection.script.gameObject);
-        //Destroy(o);
+        //往下進行下一個NPC事件 EventCollection NextEvent
+        EventCollection.script.NextEvent();
     }
 
     void MoveComplete(NPCTalkType type)
@@ -69,17 +67,19 @@ public class NPCTalkingManager : MonoBehaviour
         if (type == NPCTalkType.Enter)
         {
             //假如有旁白，對話框與腳色同時出現
-            if (this.CurrentTalkingData.Mission == GameDefinition.Mission.卡片掉了)            
+            if (this.CurrentTalkingData.Mission == GameDefinition.Mission.卡片掉了)
                 this.NextTalk();
-            
+
             //Role 出場 
             RoleAnimationCollection.script.RoleAppear(GameDefinition.CurrentChoosePlayerName);
         }
         //在離開任務對話轉場完成後
         else
         {
-            RoleAnimationCollection.script.RoleDisappear();
-            this.CurrentTalkingData.NPCObject.SetActive(false);
+            //1.支線任務尚未結束，重載場景，讓所有物件還原
+            Application.LoadLevel(Application.loadedLevelName);
+
+            //2.支線任務結束，往下一事件進行  EventCollection NextEvent (未完成)
         }
     }
 
@@ -132,6 +132,6 @@ public class NPCTalkingManager : MonoBehaviour
 
     public enum NPCTalkType
     {
-        Enter  ,Exit
+        Enter, Exit
     }
 }

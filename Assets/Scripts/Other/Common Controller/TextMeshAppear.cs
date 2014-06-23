@@ -95,7 +95,7 @@ public class TextMeshAppear : MonoBehaviour
                         break;
                     case EndToDo.NextEvent:
                         EventCollection.script.NextEvent(); //切換下一事件
-                        this.enabled = false;   //關閉此script，避免再度觸發
+                        //this.enabled = false;   //關閉此script，避免再度觸發
                         break;
                     case EndToDo.NPCTalkNextContent:
                         NPCTalkingManager.script.NextTalk();
