@@ -23,6 +23,9 @@ public class GameDefinition
     //紀錄目前選擇的遊戲類型
     public static GameType CurrentChooseGameType = GameType.None;
 
+    //紀錄目前進行到的島嶼
+    public static Island CurrentIsland = Island.莎吉斯島;
+
     //任務被觸發的狀況 false = 未進行該任務 <目前為預設值>
     public static Dictionary<Mission, bool> MissionActiveStateMapping = new Dictionary<Mission, bool>() { 
         //(智慧)莎吉斯島
