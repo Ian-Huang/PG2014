@@ -90,7 +90,8 @@ public class NPC : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.originScale = this.transform.localScale.x;     //紀錄原始scale大小
+        //紀錄原始scale大小
+        this.originScale = this.transform.localScale.x;
     }
 
     /// <summary>
@@ -99,13 +100,14 @@ public class NPC : MonoBehaviour
     /// <param name="a"></param>
     void NPCAppear(float a)
     {
-        //將NPC淡入，包含(1)Sprite NPC本身、(2)TextMesh任務名、(3)Sprite任務框
-        SpriteRenderer npcSR = this.GetComponent<SpriteRenderer>();
-        TextMesh missionTM = this.GetComponentInChildren<TextMesh>();
-        SpriteRenderer missionSR = this.GetComponentInChildren<SpriteRenderer>();
+        //將NPC淡入：
 
-        npcSR.color = new Color(npcSR.color.r, npcSR.color.g, npcSR.color.b, a);
-        missionTM.color = new Color(missionTM.color.r, missionTM.color.g, missionTM.color.b, a);
-        missionSR.color = new Color(missionSR.color.r, missionSR.color.g, missionSR.color.b, a);
+        //包含(1)Sprite NPC本身、(2)Sprite任務框、(3)TextMesh任務名
+        foreach (SpriteRenderer render in this.GetComponentsInChildren<SpriteRenderer>())
+            render.color = new Color(render.color.r, render.color.g, render.color.b, a);
+
+        //包含(3)TextMesh任務名
+        foreach (TextMesh mesh in this.GetComponentsInChildren<TextMesh>())
+            mesh.color = new Color(mesh.color.r, mesh.color.g, mesh.color.b, a);
     }
 }

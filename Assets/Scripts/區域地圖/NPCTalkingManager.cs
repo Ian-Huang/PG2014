@@ -54,6 +54,9 @@ public class NPCTalkingManager : MonoBehaviour
                  "oncompletetarget", this.gameObject
                  ));
 
+        //將目前即將結束任務，至遊戲系統更新為"已進行" = true
+        GameDefinition.MissionActiveStateMapping[GameDefinition.CurrentChooseMission] = true;
+
         //關閉當前任務所有對話內容
         this.CurrentTalkingData.BeginTalkContentList[0].transform.parent.gameObject.SetActive(false);
 

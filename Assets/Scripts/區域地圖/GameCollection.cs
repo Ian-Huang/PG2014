@@ -26,15 +26,7 @@ public class GameCollection : MonoBehaviour
         //找出將進行遊戲類型的資料
         this.CurrentGameData = this.GameDataList.Find((GameData data) =>
         {
-            if (data.Game_Type == GameDefinition.CurrentChooseGameType)
-            {
-                //this.CurrentCloneGameObject = Instantiate(data.Game_Object) as GameObject;
-                //this.CurrentCloneGameObject.transform.parent = this.transform;
-                //this.CurrentCloneGameObject.SetActive(true);
-                return true;
-            }
-            else
-                return false;
+            return (data.Game_Type == GameDefinition.CurrentChooseGameType);
         });
 
         //開啟遊戲物件
