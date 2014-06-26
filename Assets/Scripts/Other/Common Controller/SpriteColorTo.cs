@@ -14,10 +14,12 @@ public class SpriteColorTo : MonoBehaviour
     public iTween.EaseType easeType;
 
     private SpriteRenderer spriteRenderer;
+    private TextMesh textMesh;
 
     void Awake()
     {
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+        this.textMesh = this.GetComponent<TextMesh>();
     }
 
     void OnEnable()
@@ -29,7 +31,10 @@ public class SpriteColorTo : MonoBehaviour
 
     public void ColorTo()
     {
-        this.spriteRenderer.color = this.StartColor;
+        if (this.spriteRenderer != null)
+            this.spriteRenderer.color = this.StartColor;
+        if (this.textMesh != null)
+            this.textMesh.color = this.StartColor;
 
         iTween.ValueTo(this.gameObject, iTween.Hash(
                 "from", this.StartColor,
@@ -43,7 +48,10 @@ public class SpriteColorTo : MonoBehaviour
 
     void ColorUpdate(Color color)
     {
-        this.spriteRenderer.color = color;
+        if (this.spriteRenderer != null)
+            this.spriteRenderer.color = color;
+        if (this.textMesh != null)
+            this.textMesh.color = color;
     }
 
     void ColorComplete()

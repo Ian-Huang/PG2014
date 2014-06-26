@@ -28,7 +28,7 @@ public class ButtonController : MonoBehaviour
                 foreach (NPC script in GameObject.FindObjectsOfType<NPC>())
                     script.Reset();
                 break;
-            case GameDefinition.ButtonEvent.GameStart:  //(暫定) 遊戲規則的開始遊戲按鈕 (未來依不同遊戲可能要分開)
+            case GameDefinition.ButtonEvent.NextGameStep:  //(暫定) 遊戲規則的開始遊戲按鈕 (未來依不同遊戲可能要分開)
                 GameCollection.script.NextGameStep();
                 break;
             case GameDefinition.ButtonEvent.GameEnd:    //(暫定) 關閉目前正在進行遊戲的主體
