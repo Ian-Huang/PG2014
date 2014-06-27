@@ -8,6 +8,7 @@ public class NPCTalkingManager : MonoBehaviour
     public float CameraMoveOffsetX;     //轉場Camera X 位置量
 
     public GameObject SpecialNPC_Chef;  //特殊NPC 甜點師(奶油水果派任務使用)
+    public GameObject SpecialNPC_Sicker;  //特殊NPC 病人(你怎麼連話都說不清楚任務使用)
 
     public List<TalkingData> TalkingDataList;   //所有任務對話清單
     [HideInInspector]
@@ -40,6 +41,10 @@ public class NPCTalkingManager : MonoBehaviour
         this.BackgroundObject.GetComponent<SpriteRenderer>().sprite = this.CurrentTalkingData.BackgroundSprite;
         this.CurrentTalkingData.NPCObject.SetActive(true);
 
+        // --------特別任務：你怎麼連話都說不清楚 ------------
+        if (this.CurrentTalkingData.Mission == GameDefinition.Mission.你怎麼連話都說不清楚)
+            this.SpecialNPC_Sicker.SetActive(true);
+
         this.CurrentTalkIndex = 0;
     }
 
@@ -58,7 +63,7 @@ public class NPCTalkingManager : MonoBehaviour
         GameDefinition.MissionActiveStateMapping[GameDefinition.CurrentChooseMission] = true;
 
         //關閉當前任務所有對話內容
-        this.CurrentTalkingData.BeginTalkContentList[0].transform.parent.gameObject.SetActive(false);
+        this.CurrentTalkingData.TalkContentList[0].transform.parent.gameObject.SetActive(false);
 
         //往下進行下一個NPC事件 EventCollection NextEvent
         EventCollection.script.NextEvent();
@@ -108,13 +113,13 @@ public class NPCTalkingManager : MonoBehaviour
             }
             // --------特別任務：奶油水果派 ------------
 
-            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex - 1].SetActive(false);   //關閉前一事件物件            
-            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex].SetActive(true);        //開啟新一事件物件
+            this.CurrentTalkingData.TalkContentList[this.CurrentTalkIndex - 1].SetActive(false);   //關閉前一事件物件            
+            this.CurrentTalkingData.TalkContentList[this.CurrentTalkIndex].SetActive(true);        //開啟新一事件物件
             this.CurrentTalkIndex++;
         }
         else
         {
-            this.CurrentTalkingData.BeginTalkContentList[this.CurrentTalkIndex].SetActive(true);        //開啟新一事件物件
+            this.CurrentTalkingData.TalkContentList[this.CurrentTalkIndex].SetActive(true);        //開啟新一事件物件
             this.CurrentTalkIndex++;
         }
     }
@@ -130,7 +135,7 @@ public class NPCTalkingManager : MonoBehaviour
         public GameDefinition.Mission Mission;
         public GameObject NPCObject;
         public Sprite BackgroundSprite;
-        public List<GameObject> BeginTalkContentList;
+        public List<GameObject> TalkContentList;
     }
 
     public enum NPCTalkType
