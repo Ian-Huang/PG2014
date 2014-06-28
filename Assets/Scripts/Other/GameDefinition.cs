@@ -31,7 +31,7 @@ public class GameDefinition
         //(智慧)莎吉斯島
         {Mission.卡片掉了,false} ,{Mission.黃綠紅,false},{Mission.知識通,false},{Mission.推理要在晚餐後,true},{Mission.消失的羅盤,false},
         //(勇氣)布列德島
-        {Mission.奶油水果派,false} ,{Mission.給我食譜,false},{Mission.我的船壞了,false},{Mission.在我的歌聲裡,false},{Mission.你怎麼連話都說不清楚,false},
+        {Mission.奶油水果派,false} ,{Mission.給我食譜,false},{Mission.我的船壞了,false},{Mission.在我的歌聲裡,true},{Mission.你怎麼連話都說不清楚,false},
         //(自信)康費爾森島
         {Mission.我要成為畢卡索,false} ,{Mission.筆墨登場,false},{Mission.你是我的眼,false},{Mission.未填詞,false},{Mission.混亂的程序,false}};
 

@@ -24,10 +24,18 @@ public class MemoryMatchGame_Manager : MonoBehaviour
         foreach (var temp in this.GetComponentsInChildren<MemoryMatchGame_Card>())
             this.CardCollection.Add(temp.gameObject);
 
-        this.CurrentState = State.StopGame;
+        for (int i = 0; i < this.CardCollection.Count; i++)
+        {
+            int num = Random.Range(0,this.CardCollection.Count);
+            Vector3 tempV3 = this.CardCollection[i].transform.position;
+            this.CardCollection[i].transform.position = this.CardCollection[num].transform.position;
+            this.CardCollection[num].transform.position = tempV3;
+        }
+
+            this.CurrentState = State.StopGame;
 
         //開始看牌倒數計時
-        this.InvokeRepeating("Timer", 1,1);
+        this.InvokeRepeating("Timer", 1, 1);
         this.TimerObject.text = this.TimerCount.ToString();
     }
 
