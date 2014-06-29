@@ -15,7 +15,7 @@ public class GameTimer : MonoBehaviour
     {
         this.MinuteText.text = "";
         this.SecondText.text = "";
-        yield return new WaitForSeconds(this.GetComponent<SpriteColorTo>().DelayTime + this.GetComponent<SpriteColorTo>().ChangeTime);
+        yield return new WaitForSeconds(this.GetComponent<ColorTo>().DelayTime + this.GetComponent<ColorTo>().ChangeTime);
 
         this.MinuteText.text = (this.CountDownSecond / 60).ToString("00");
         this.SecondText.text = (this.CountDownSecond % 60).ToString("00");

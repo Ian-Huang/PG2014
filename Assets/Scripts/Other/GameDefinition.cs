@@ -16,7 +16,7 @@ public class GameDefinition
         {SystemPlayerName.里昂,"里昂"} , {SystemPlayerName.莉莉卡,"莉莉卡"} , {SystemPlayerName.葛蘭蒂,"葛蘭蒂"}};
 
     //紀錄目前被選擇的腳色<參數預設，測試使用>
-    public static SystemPlayerName CurrentChoosePlayerName = SystemPlayerName.翠絲;
+    public static SystemPlayerName CurrentChoosePlayerName = SystemPlayerName.莉莉卡;
 
     //紀錄目前選擇的任務
     public static Mission CurrentChooseMission = Mission.None;
@@ -35,6 +35,8 @@ public class GameDefinition
         //(自信)康費爾森島
         {Mission.我要成為畢卡索,false} ,{Mission.筆墨登場,false},{Mission.你是我的眼,false},{Mission.未填詞,false},{Mission.混亂的程序,false}};
 
+    //紀錄"記憶對對碰"遊戲腳色成績
+    public static Dictionary<SystemPlayerName, int> MemoryGameRoleScoreMapping = new Dictionary<SystemPlayerName, int>();
 
     //按鈕事件
     public enum ButtonEvent
@@ -58,7 +60,7 @@ public class GameDefinition
         None = 0, 被選角色名 = 1,
 
         //主角群----
-        //翠絲 = 11, 巴洛 = 12, 卡勒b = 13, 里昂 = 14, 莉莉卡 = 15, 葛蘭蒂 = 16,
+        翠絲 = 11, 巴洛 = 12, 卡勒b = 13, 里昂 = 14, 莉莉卡 = 15, 葛蘭蒂 = 16,
 
         //NPC----
         卡片收集者 = 21, 知識通 = 22, 警長 = 23, 小偷 = 24, //第一座島嶼
@@ -95,5 +97,12 @@ public class GameDefinition
     public enum Island
     {
         莎吉斯島 = 1, 布列德島 = 2, 康費爾森島 = 3
+    }
+
+    [System.Serializable]
+    public class RoleData
+    {
+        public SystemPlayerName SystemName;  //方便辨識，系統名稱
+        public GameObject RoleObject;   //腳色動畫物件
     }
 }

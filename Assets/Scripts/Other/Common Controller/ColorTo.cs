@@ -2,9 +2,9 @@
 using System.Collections;
 
 /// <summary>
-/// 通用函式，Sprite Color 漸變控制
+/// 通用函式，Sprite Color 、 TextMesh Color 漸變控制
 /// </summary>
-public class SpriteColorTo : MonoBehaviour
+public class ColorTo : MonoBehaviour
 {
     public Color StartColor = new Color(1, 1, 1, 0);    //起始顏色
     public Color EndColor = new Color(1, 1, 1, 1);      //結束顏色
@@ -26,10 +26,10 @@ public class SpriteColorTo : MonoBehaviour
     {
         //是否在物件被啟用時啟動函式
         if (this.isStartChange)
-            this.ColorTo();
+            this.StartColorTo();
     }
 
-    public void ColorTo()
+    public void StartColorTo()
     {
         if (this.spriteRenderer != null)
             this.spriteRenderer.color = this.StartColor;

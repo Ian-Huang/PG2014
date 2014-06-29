@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RoleActionController : MonoBehaviour
 {
+    public HandleType Handletype;
     public AudioClip 碰撞音效;
     private SmoothMoves.BoneAnimation boneAnimation;
 
@@ -23,32 +24,45 @@ public class RoleActionController : MonoBehaviour
         //播放 idle動作
         this.boneAnimation.Play("idle");
 
-        //選角頁面使用
-        if (RudderRotate.script != null)
-            iTween.Stop(RudderRotate.script.gameObject);
-
-        //區域地圖使用
-        if (NPCTalkingManager.script != null)
+        switch (this.Handletype)
         {
-            if (NPCTalkingManager.script.CurrentTalkingData.Mission == GameDefinition.Mission.卡片掉了)
-            {
-                //鏡頭震動
-                iTween.ShakePosition(Camera.main.gameObject, iTween.Hash(
-                    "amount", new Vector3(0, 1, 1),
-                    "time", 0.75f));
-                //NPC 撞飛
-                iTween.MoveTo(NPCTalkingManager.script.CurrentTalkingData.NPCObject, iTween.Hash(
-                    "x", NPCTalkingManager.script.CurrentTalkingData.NPCObject.transform.position.x - 4,
-                    "time", 0.75f));
+            case HandleType.選角:
+                //選角頁面使用
+                if (RudderRotate.script != null)
+                    iTween.Stop(RudderRotate.script.gameObject);
+                break;
+            case HandleType.NPC對話:
+                //區域地圖 NPC對話使用
+                if (NPCTalkingManager.script != null)
+                {
+                    if (NPCTalkingManager.script.CurrentTalkingData.Mission == GameDefinition.Mission.卡片掉了)
+                    {
+                        //鏡頭震動
+                        iTween.ShakePosition(Camera.main.gameObject, iTween.Hash(
+                            "amount", new Vector3(0, 1, 1),
+                            "time", 0.75f));
+                        //NPC 撞飛
+                        iTween.MoveTo(NPCTalkingManager.script.CurrentTalkingData.NPCObject, iTween.Hash(
+                            "x", NPCTalkingManager.script.CurrentTalkingData.NPCObject.transform.position.x - 4,
+                            "time", 0.75f));
 
-                //產生碰撞音效
-                this.audio.PlayOneShot(this.碰撞音效);
-                //動作佇列 (卡片掉->Idle2)
-                NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().Play("carddrop");
-                NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().PlayQueued("idle2");
-            }
-            else
-                NPCTalkingManager.script.NextTalk();
+                        //產生碰撞音效
+                        this.audio.PlayOneShot(this.碰撞音效);
+                        //動作佇列 (卡片掉->Idle2)
+                        NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().Play("carddrop");
+                        NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().PlayQueued("idle2");
+                    }
+                    else
+                        NPCTalkingManager.script.NextTalk();
+                }
+                break;
+            case HandleType.記憶對對碰:
+                break;
         }
+    }
+
+    public enum HandleType
+    {
+        選角 = 1, NPC對話 = 2, 記憶對對碰 = 3
     }
 }
