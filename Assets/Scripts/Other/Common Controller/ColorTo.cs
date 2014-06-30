@@ -12,6 +12,7 @@ public class ColorTo : MonoBehaviour
     public float DelayTime;                             //延遲
     public bool isStartChange;
     public iTween.EaseType easeType;
+    public iTween.LoopType loopType = iTween.LoopType.none;
 
     private SpriteRenderer spriteRenderer;
     private TextMesh textMesh;
@@ -43,7 +44,8 @@ public class ColorTo : MonoBehaviour
                 "delay", this.DelayTime,
                 "onupdate", "ColorUpdate",
                 "oncomplete", "ColorComplete",
-                "easetype", this.easeType));
+                "easetype", this.easeType,
+                "looptype", this.loopType));
     }
 
     void ColorUpdate(Color color)

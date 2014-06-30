@@ -13,7 +13,7 @@ public class MemoryMatchGame_CalculateScore : MonoBehaviour
     IEnumerator Start()
     {
         this.currentIndex = 0;
-        foreach (var temp in GameDefinition.MemoryGameRoleScoreMapping)
+        foreach (var temp in GameCollection.script.MemoryGameRoleScoreMapping)
         {
             //找出目前要處理的腳色
             GameDefinition.RoleData tempRoleData = this.RoleDataList.Find((GameDefinition.RoleData data) =>

@@ -41,6 +41,14 @@ public class ButtonController : MonoBehaviour
                 //把卡片收集者的動作改為Idle
                 NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().Play("idle");
                 break;
+            case GameDefinition.ButtonEvent.HandSomethingGame_Correct:    //比手畫腳，答對按鈕
+                if (HandSomethingGame_Manager.script.CanChooseButton)
+                    HandSomethingGame_Manager.script.StartShowResult(true);
+                break;
+            case GameDefinition.ButtonEvent.HandSomethingGame_Giveup:    //比手畫腳，放棄按鈕
+                if (HandSomethingGame_Manager.script.CanChooseButton)
+                    HandSomethingGame_Manager.script.StartShowResult(false);
+                break;
             default:
                 break;
         }

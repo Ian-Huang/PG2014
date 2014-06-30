@@ -120,7 +120,7 @@ public class MemoryMatchGame_Manager : MonoBehaviour
 
             //將各腳色分數紀錄於系統
             foreach (var temp in this.RoleDataList)
-                GameDefinition.MemoryGameRoleScoreMapping.Add(temp.SystemName, temp.score);
+                GameCollection.script.MemoryGameRoleScoreMapping.Add(temp.SystemName, temp.score);
 
             //顯示下一階段 ， 統計成績(未完成)
             GameCollection.script.NextGameStep();

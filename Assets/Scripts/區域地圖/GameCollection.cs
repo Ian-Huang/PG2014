@@ -11,6 +11,17 @@ public class GameCollection : MonoBehaviour
 
     public int CurrentGameStepIndex = 0;    //紀錄遊戲流程索引值
 
+    //紀錄"記憶對對碰"遊戲腳色成績
+    public Dictionary<GameDefinition.SystemPlayerName, int> MemoryGameRoleScoreMapping = new Dictionary<GameDefinition.SystemPlayerName, int>();
+
+    //紀錄"快問快答"遊戲成績
+    [HideInInspector]
+    public int QuickAnsGameCorrectCount = 0;
+
+    //紀錄"比手畫腳"遊戲成績
+    [HideInInspector]
+    public int HandSomethingGameCorrectCount = 0;
+
     public static GameCollection script;
 
     void Awake()
