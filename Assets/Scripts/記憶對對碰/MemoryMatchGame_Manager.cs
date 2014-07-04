@@ -9,9 +9,6 @@ public class MemoryMatchGame_Manager : MonoBehaviour
     public TextMesh TimerObject;
     public int TimerCount = 5;
 
-    public AudioClip CorrectSound;
-    public AudioClip ErrorSound;
-
     public List<GameObject> CardCollection;
 
     public State CurrentState;
@@ -142,27 +139,7 @@ public class MemoryMatchGame_Manager : MonoBehaviour
         this.RoleAppear();  //第一位腳色出現，開始遊戲
         this.CurrentState = State.StartGame;
     }
-
-    /// <summary>
-    /// 播放音效
-    /// </summary>
-    /// <param name="type">正確或錯誤音效</param>
-    public void PlaySound(SoundType type)
-    {
-        // 待解問題: 遊戲結束後的那一瞬間，音效無法播放
-        switch (type)
-        {
-            case SoundType.MatchCorrect:
-                this.audio.PlayOneShot(this.CorrectSound);
-                break;
-            case SoundType.MatchError:
-                this.audio.PlayOneShot(this.ErrorSound);
-                break;
-            default:
-                break;
-        }
-    }
-
+    
     void Awake()
     {
         script = this;
@@ -175,12 +152,7 @@ public class MemoryMatchGame_Manager : MonoBehaviour
         Matching = 2,   //配對中
         Recover = 3     //卡片回復為反面的過程
     }
-
-    public enum SoundType
-    {
-        MatchCorrect = 0, MatchError = 1
-    }
-
+    
     [System.Serializable]
     public class MemoryGameRoleData : GameDefinition.RoleData
     {

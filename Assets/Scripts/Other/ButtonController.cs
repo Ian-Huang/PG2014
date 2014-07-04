@@ -49,6 +49,19 @@ public class ButtonController : MonoBehaviour
                 if (HandSomethingGame_Manager.script.CanChooseButton)
                     HandSomethingGame_Manager.script.StartShowResult(false);
                 break;
+            case GameDefinition.ButtonEvent.ColorGame_ShowAnswer:    //顏不及意，解答按鈕
+                ColorGame_Manager.script.ShowAnswer();
+                break;
+            case GameDefinition.ButtonEvent.ColorGame_Correct:    //顏不及意，正確按鈕
+                ColorGame_Manager.script.ShowQuestion();
+                SoundManager.script.PlaySound(SoundManager.SoundType.正確音效);
+                GameCollection.script.ColorGameCorrectCount++;
+                break;
+            case GameDefinition.ButtonEvent.ColorGame_Error:    //顏不及意，錯誤按鈕
+                ColorGame_Manager.script.ShowQuestion();
+                SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
+                break;
+
             default:
                 break;
         }

@@ -4,7 +4,6 @@ using System.Collections;
 public class RoleActionController : MonoBehaviour
 {
     public HandleType Handletype;
-    public AudioClip 碰撞音效;
     private SmoothMoves.BoneAnimation boneAnimation;
 
     // Use this for initialization
@@ -47,7 +46,8 @@ public class RoleActionController : MonoBehaviour
                             "time", 0.75f));
 
                         //產生碰撞音效
-                        this.audio.PlayOneShot(this.碰撞音效);
+                        SoundManager.script.PlaySound(SoundManager.SoundType.碰撞音效);
+
                         //動作佇列 (卡片掉->Idle2)
                         NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().Play("carddrop");
                         NPCTalkingManager.script.CurrentTalkingData.NPCObject.GetComponent<SmoothMoves.BoneAnimation>().PlayQueued("idle2");

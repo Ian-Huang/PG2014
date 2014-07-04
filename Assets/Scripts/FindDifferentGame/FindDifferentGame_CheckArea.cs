@@ -14,15 +14,15 @@ public class FindDifferentGame_CheckArea : MonoBehaviour
         {
             if (this.Areatype == AreaType.Correct)
             {
-                //FindDifferentGame_Manager 播放正確音效
-                FindDifferentGame_Manager.script.PlaySound(FindDifferentGame_Manager.SoundType.FindCorrect);
+                //播放正確音效
+                SoundManager.script.PlaySound(SoundManager.SoundType.正確音效);
                 this.GetComponentInChildren<MoveTo>().Move();
                 this.AlreadyFind = true;
             }
             else
             {
-                //FindDifferentGame_Manager 播放錯誤音效
-                FindDifferentGame_Manager.script.PlaySound(FindDifferentGame_Manager.SoundType.FindError);
+                //播放錯誤音效
+                SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
             }
         }
     }

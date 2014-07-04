@@ -17,8 +17,6 @@ public class QuickAnsGame_Manager : MonoBehaviour
 
     public GameObject CorrectObject;
     public GameObject ErrorObject;
-    public AudioClip CorrectSound;
-    public AudioClip ErrorSound;
 
     [HideInInspector]
     public bool CanChoose;
@@ -103,21 +101,25 @@ public class QuickAnsGame_Manager : MonoBehaviour
             GameObject temp = Instantiate(this.CorrectObject) as GameObject;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1;
             temp.SetActive(true);
+
             //正確音效
-            this.audio.PlayOneShot(this.CorrectSound);
-            StartCoroutine("RunShowAnswer", 1);
-            GameCollection.script.QuickAnsGameCorrectCount++;
+            SoundManager.script.PlaySound(SoundManager.SoundType.正確音效);
+
+            StartCoroutine(this.RunShowAnswer(1));
+            GameCollection.script.QuickAnsGameCorrectCount++;   //計分+1
         }
         //選錯答案
         else
         {
-            //建立 圈圈 物件，停留時間1.5秒
+            //建立 叉叉 物件，停留時間1.5秒
             GameObject temp = Instantiate(this.ErrorObject) as GameObject;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1.5f;
             temp.SetActive(true);
+
             //錯誤音效
-            this.audio.PlayOneShot(this.ErrorSound);
-            StartCoroutine("RunShowAnswer", 1.5f);
+            SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
+
+            StartCoroutine(this.RunShowAnswer(1.5f));
         }
 
         //使用過題目不再使用

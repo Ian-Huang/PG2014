@@ -8,8 +8,6 @@ public class HandSomethingGame_Manager : MonoBehaviour
 
     public GameObject CorrectObject;
     public GameObject ErrorObject;
-    public AudioClip CorrectSound;
-    public AudioClip ErrorSound;
 
     public string CurrentQuestionString;
 
@@ -58,8 +56,10 @@ public class HandSomethingGame_Manager : MonoBehaviour
             GameObject temp = Instantiate(this.CorrectObject) as GameObject;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1;
             temp.SetActive(true);
+
             //正確音效
-            this.audio.PlayOneShot(this.CorrectSound);
+            SoundManager.script.PlaySound(SoundManager.SoundType.正確音效);
+
             StartCoroutine("RunShowAnswer", 1);
             GameCollection.script.HandSomethingGameCorrectCount++;
         }
@@ -70,8 +70,10 @@ public class HandSomethingGame_Manager : MonoBehaviour
             GameObject temp = Instantiate(this.ErrorObject) as GameObject;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1.5f;
             temp.SetActive(true);
+
             //錯誤音效
-            this.audio.PlayOneShot(this.ErrorSound);
+            SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
+
             StartCoroutine("RunShowAnswer", 1.5f);
         }
 

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FindDifferentGame_Manager : MonoBehaviour
+public class ReasoningGame_Manager : MonoBehaviour
 {
-    public static FindDifferentGame_Manager script;
 
     // Use this for initialization
     void Start()
@@ -15,10 +14,5 @@ public class FindDifferentGame_Manager : MonoBehaviour
     void Update()
     {
 
-    }
-
-    void Awake()
-    {
-        script = this;
     }
 }

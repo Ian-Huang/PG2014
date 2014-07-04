@@ -118,8 +118,8 @@ public class MemoryMatchGame_Card : MonoBehaviour
                     MemoryMatchGame_Manager.script.targetMatchObject = null;
                     MemoryMatchGame_Manager.script.CurrentState = MemoryMatchGame_Manager.State.StartGame;
 
-                    //MemoryMatchGame_Manager 播放正確音效
-                    MemoryMatchGame_Manager.script.PlaySound(MemoryMatchGame_Manager.SoundType.MatchCorrect);
+                    //播放正確音效
+                    SoundManager.script.PlaySound(SoundManager.SoundType.正確音效);
 
                     //針對目前進行腳色計分
                     MemoryMatchGame_Manager.script.RoleDataList[MemoryMatchGame_Manager.script.currentPlayRoleIndex].score++;
@@ -140,7 +140,7 @@ public class MemoryMatchGame_Card : MonoBehaviour
                     MemoryMatchGame_Manager.script.CurrentState = MemoryMatchGame_Manager.State.Recover;
 
                     //MemoryMatchGame_Manager 播放錯誤音效
-                    MemoryMatchGame_Manager.script.PlaySound(MemoryMatchGame_Manager.SoundType.MatchError);
+                    SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
 
                     //切換下一位腳色進行遊戲
                     MemoryMatchGame_Manager.script.RoleAppear();

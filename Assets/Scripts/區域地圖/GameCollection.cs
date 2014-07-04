@@ -22,6 +22,10 @@ public class GameCollection : MonoBehaviour
     [HideInInspector]
     public int HandSomethingGameCorrectCount = 0;
 
+    //紀錄"顏不及意"遊戲成績
+    [HideInInspector]
+    public int ColorGameCorrectCount = 0;
+
     public static GameCollection script;
 
     void Awake()

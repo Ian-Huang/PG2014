@@ -83,7 +83,7 @@ public class GameDefinition
         MissionSure_Area = 2000, MissionCancel_Area = 2001,
         NextGameStep = 3000,
         GameEnd = 4000, GameEnd_卡片掉了 = 4001,
-        HandSomethingGame_Correct = 5000, HandSomethingGame_Giveup = 5001
+        HandSomethingGame_Correct = 5000, HandSomethingGame_Giveup = 5001, ColorGame_ShowAnswer = 5002, ColorGame_Correct = 5003, ColorGame_Error = 5004
     }
 
     public enum SystemPlayerName
@@ -126,8 +126,9 @@ public class GameDefinition
     public enum GameType
     {
         None = 0,
-        記憶對對碰 = 1, 顏不及意 = 2, 快問快答 = 3, 推理要在晚餐後 = 4, 支援前線 = 5,
-        大家來找碴 = 6, 歌喉戰 = 7, 比手畫腳 = 8, 人人都是畢卡索 = 9, 排列組合 = 10
+        記憶對對碰 = 1, 顏不及意 = 2, 快問快答 = 3, 推理要在晚餐後 = 4, 支援前線_1 = 5,
+        大家來找碴 = 6, 歌喉戰_1 = 7, 比手畫腳 = 8, 人人都是畢卡索 = 9, 排列組合 = 10,
+        支援前線_2 = 11, 歌喉戰_2 = 12
     }
 
     public enum Island
