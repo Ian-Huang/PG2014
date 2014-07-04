@@ -10,18 +10,20 @@ public class DialogName : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(NameShow());
+        //StartCoroutine(NameShow());
+        this.NameShow();
     }
 
     // Use this for initialization
-    IEnumerator NameShow()
+    void NameShow()
     {
-        this.GetComponent<TextMesh>().text = "";
-        yield return new WaitForSeconds(this.DelayTime);
+        //this.GetComponent<TextMesh>().text = "";
+        //yield return new WaitForSeconds(this.DelayTime);
 
         switch (this.dialogName)
         {
             case GameDefinition.DialogName.None:
+                this.GetComponent<TextMesh>().text = "";
                 break;
             case GameDefinition.DialogName.被選角色名:
                 this.GetComponent<TextMesh>().text = GameDefinition.PlayerNameData[GameDefinition.CurrentChoosePlayerName];
