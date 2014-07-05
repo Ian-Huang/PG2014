@@ -84,10 +84,53 @@ public class NPCTalkingManager : MonoBehaviour
         //在離開任務對話轉場完成後
         else
         {
-            //1.支線任務尚未結束，重載場景，讓所有物件還原
-            Application.LoadLevel(Application.loadedLevelName);
 
-            //2.支線任務結束，往下一事件進行  EventCollection NextEvent (未完成)
+            //1.支線任務結束 or 15分鐘時間超過後，往下一事件進行  EventCollection NextEvent (未完成)
+            switch (GameDefinition.CurrentIsland)
+            {
+                case GameDefinition.Island.莎吉斯島:
+                    if (GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.卡片掉了] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.黃綠紅] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.知識通] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.推理要在晚餐後] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.消失的羅盤]
+                        )
+                    {
+                        EventCollection.script.NextEvent();
+                        return;
+                    }
+                    break;
+                case GameDefinition.Island.布列德島:
+                    if (GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.奶油水果派] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.給我食譜] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.我的船壞了] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.在我的歌聲裡] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.你怎麼連話都說不清楚]
+                        )
+                    {
+                        EventCollection.script.NextEvent();
+                        return;
+                    }
+                    break;
+                case GameDefinition.Island.康費爾森島:
+                    if (GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.我要成為畢卡索] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.筆墨登場] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.你是我的眼] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.未填詞] &&
+                        GameDefinition.MissionActiveStateMapping[GameDefinition.Mission.混亂的程序]
+                        )
+                    {
+                        EventCollection.script.NextEvent();
+                        return;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+
+            //2.支線任務尚未結束，重載場景，讓所有物件還原
+            Application.LoadLevel(Application.loadedLevelName);
         }
     }
 

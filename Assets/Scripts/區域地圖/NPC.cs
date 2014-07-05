@@ -18,6 +18,9 @@ public class NPC : MonoBehaviour
     [HideInInspector]
     public bool isChoosed = false; //是否被選中
 
+    [HideInInspector]
+    public bool isCanTouch = false; //是否可以開始被觸摸
+
     void OnEnable()
     {
         //NPC 淡入畫面
@@ -31,49 +34,58 @@ public class NPC : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (!this.isChoosed)
+        if (this.isCanTouch)
         {
-            //滑鼠移進角色按鈕，按鈕放大(AmplifyScale 決定)
-            iTween.ScaleTo(this.gameObject, iTween.Hash(
-                    "scale", Vector3.one * this.AmplifyScale,
-                    "time", 1
-                    ));
-            //更換為外光暈圖
-            this.GetComponent<SpriteRenderer>().sprite = this.Active_Sprite;
+            if (!this.isChoosed)
+            {
+                //滑鼠移進角色按鈕，按鈕放大(AmplifyScale 決定)
+                iTween.ScaleTo(this.gameObject, iTween.Hash(
+                        "scale", Vector3.one * this.AmplifyScale,
+                        "time", 1
+                        ));
+                //更換為外光暈圖
+                this.GetComponent<SpriteRenderer>().sprite = this.Active_Sprite;
+            }
         }
     }
 
     void OnMouseExit()
     {
-        if (!this.isChoosed)
+        if (this.isCanTouch)
         {
-            //滑鼠移出角色按鈕，按鈕回到原始大小
-            iTween.ScaleTo(this.gameObject, iTween.Hash(
-                    "scale", Vector3.one * this.originScale,
-                    "time", 1
-                    ));
-            //更換為原始圖
-            this.GetComponent<SpriteRenderer>().sprite = this.Normal_Sprite;
+            if (!this.isChoosed)
+            {
+                //滑鼠移出角色按鈕，按鈕回到原始大小
+                iTween.ScaleTo(this.gameObject, iTween.Hash(
+                        "scale", Vector3.one * this.originScale,
+                        "time", 1
+                        ));
+                //更換為原始圖
+                this.GetComponent<SpriteRenderer>().sprite = this.Normal_Sprite;
+            }
         }
     }
 
     void OnMouseUpAsButton()
     {
-        if (!this.isChoosed)
+        if (this.isCanTouch)
         {
-            //將所有 NPC 設為被選擇，避免被誤觸
-            foreach (NPC tempScript in this.transform.parent.GetComponentsInChildren<NPC>())
-                tempScript.isChoosed = true;    //設定為已被選中
+            if (!this.isChoosed)
+            {
+                //將所有 NPC 設為被選擇，避免被誤觸
+                foreach (NPC tempScript in this.transform.parent.GetComponentsInChildren<NPC>())
+                    tempScript.isChoosed = true;    //設定為已被選中
 
-            EventCollection.script.NextEvent();     //切換下一事件
+                EventCollection.script.NextEvent();     //切換下一事件
 
-            //紀錄目前被選擇的任務名
-            GameDefinition.CurrentChooseMission = this.Mission;
-            //紀錄目前選擇的遊戲類型
-            GameDefinition.CurrentChooseGameType = this.Gametype;
+                //紀錄目前被選擇的任務名
+                GameDefinition.CurrentChooseMission = this.Mission;
+                //紀錄目前選擇的遊戲類型
+                GameDefinition.CurrentChooseGameType = this.Gametype;
 
-            //設定 目前被選任務名的詢問對話
-            GameObject.FindObjectOfType<TextMeshAppear>().ResetText("確定要進行" + "\"" + this.Mission + "\"" + "任務嗎？");
+                //設定 目前被選任務名的詢問對話
+                GameObject.FindObjectOfType<TextMeshAppear>().ResetText("確定要進行" + "\"" + this.Mission + "\"" + "任務嗎？");
+            }
         }
     }
 
@@ -90,6 +102,7 @@ public class NPC : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        this.isCanTouch = false;
         //紀錄原始scale大小
         this.originScale = this.transform.localScale.x;
     }

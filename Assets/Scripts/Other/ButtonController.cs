@@ -18,6 +18,9 @@ public class ButtonController : MonoBehaviour
             case GameDefinition.ButtonEvent.LeftArrow_RoleSelect:
                 RoleSelectController.script.RunLeftCard();
                 break;
+            case GameDefinition.ButtonEvent.StartGame_RoleSelect:
+                Application.LoadLevel("開頭海邊對話");
+                break;
             case GameDefinition.ButtonEvent.MissionSure_Area:   //選擇任務確認:確定
                 GameObject.FindObjectOfType<NPCTalkingManager>().ToMissionTalking();
                 break;
@@ -62,6 +65,9 @@ public class ButtonController : MonoBehaviour
                 SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
                 break;
 
+            case GameDefinition.ButtonEvent.TreasureGame_Finish:    //神秘島，寶物問題完成
+                GameDefinition.CurrentTreasureController_Script.OpenEpilogue();
+                break;
             default:
                 break;
         }

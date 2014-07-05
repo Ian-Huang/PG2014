@@ -8,7 +8,7 @@ public class GameDefinition
     public const float CardChangeTime = 0.5f;
 
     //最小遊戲人數
-    public const int MinPlayerCount = 4;
+    public const int MinPlayerCount = 2;
 
     //紀錄人物名字，與其對應的角色 <參數預設名字，測試使用>
     public static Dictionary<SystemPlayerName, string> PlayerNameData = new Dictionary<SystemPlayerName, string>() {
@@ -24,14 +24,17 @@ public class GameDefinition
     public static GameType CurrentChooseGameType = GameType.None;
 
     //紀錄目前進行到的島嶼
-    public static Island CurrentIsland = Island.莎吉斯島;
+    public static Island CurrentIsland = Island.布列德島;
+
+    //紀錄神秘島目前正在進行的寶物控制器腳本 
+    public static TreasureController CurrentTreasureController_Script;
 
     //任務被觸發的狀況 false = 未進行該任務 <目前為預設值>
     public static Dictionary<Mission, bool> MissionActiveStateMapping = new Dictionary<Mission, bool>() { 
         //(智慧)莎吉斯島
-        {Mission.卡片掉了,false} ,{Mission.黃綠紅,false},{Mission.知識通,false},{Mission.推理要在晚餐後,true},{Mission.消失的羅盤,false},
+        {Mission.卡片掉了,false} ,{Mission.黃綠紅,false},{Mission.知識通,false},{Mission.推理要在晚餐後,false},{Mission.消失的羅盤,false},
         //(勇氣)布列德島
-        {Mission.奶油水果派,false} ,{Mission.給我食譜,false},{Mission.我的船壞了,false},{Mission.在我的歌聲裡,true},{Mission.你怎麼連話都說不清楚,false},
+        {Mission.奶油水果派,false} ,{Mission.給我食譜,false},{Mission.我的船壞了,false},{Mission.在我的歌聲裡,false},{Mission.你怎麼連話都說不清楚,true},
         //(自信)康費爾森島
         {Mission.我要成為畢卡索,false} ,{Mission.筆墨登場,false},{Mission.你是我的眼,false},{Mission.未填詞,false},{Mission.混亂的程序,false}};
 
@@ -77,13 +80,14 @@ public class GameDefinition
     public enum ButtonEvent
     {
         //角色選擇場景
-        SureButton_RoleSelect = 1000, LeftArrow_RoleSelect = 1001, RightArrow_RoleSelect = 1002,
+        SureButton_RoleSelect = 1000, LeftArrow_RoleSelect = 1001, RightArrow_RoleSelect = 1002, StartGame_RoleSelect = 1003,
 
         //區域地圖場景
         MissionSure_Area = 2000, MissionCancel_Area = 2001,
         NextGameStep = 3000,
         GameEnd = 4000, GameEnd_卡片掉了 = 4001,
-        HandSomethingGame_Correct = 5000, HandSomethingGame_Giveup = 5001, ColorGame_ShowAnswer = 5002, ColorGame_Correct = 5003, ColorGame_Error = 5004
+        HandSomethingGame_Correct = 5000, HandSomethingGame_Giveup = 5001, ColorGame_ShowAnswer = 5002, ColorGame_Correct = 5003, ColorGame_Error = 5004,
+        TreasureGame_Finish = 6000
     }
 
     public enum SystemPlayerName
@@ -133,7 +137,12 @@ public class GameDefinition
 
     public enum Island
     {
-        莎吉斯島 = 1, 布列德島 = 2, 康費爾森島 = 3
+        莎吉斯島 = 1, 布列德島 = 2, 康費爾森島 = 3, 神秘島 = 4
+    }
+
+    public enum TreasureType
+    {
+        劍 = 1, 戰甲 = 2, 眼鏡 = 3
     }
 
     public class QuickAnsGameQuestionData

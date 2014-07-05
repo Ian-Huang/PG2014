@@ -123,6 +123,9 @@ public class TextMeshAppear : MonoBehaviour
                             NPCTalkingManager.script.ExitMissionTalking();
                             this.enabled = false;   //關閉此script，避免再度觸發
                             break;
+                        case EndToDo.TreasureActive:
+                            GameDefinition.CurrentTreasureController_Script.CloseTreasure();
+                            break;
                         default:
                             break;
                     }
@@ -135,6 +138,7 @@ public class TextMeshAppear : MonoBehaviour
     {
         Nothing = 0,
         NextEvent = 1,
-        NPCTalkNextContent = 2, EnterGame = 3, ExitMission = 4
+        NPCTalkNextContent = 2, EnterGame = 3, ExitMission = 4,
+        TreasureActive = 5
     }
 }

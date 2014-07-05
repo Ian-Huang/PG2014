@@ -7,6 +7,8 @@ using System.Collections.Generic;
 /// </summary>
 public class RoleSelectController : MonoBehaviour
 {
+    public GameObject StartGameButton;
+
     public List<Transform> SaveRoleCardTransformList;
 
     private List<Vector3> roleCardPositionList;
@@ -33,6 +35,7 @@ public class RoleSelectController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        this.StartGameButton.SetActive(false);
         this.isChanging = false;
 
         //紀錄角色卡片的位置、大小資訊
@@ -185,14 +188,21 @@ public class RoleSelectController : MonoBehaviour
 
         //將名字紀錄到系統
         GameDefinition.PlayerNameData[this.CenterCard.SystemName] = name;
-    }
 
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(0, 0, 100, 50), "開始遊戲"))
+        //判斷是否超過最小遊玩人數，顯示開始遊戲按鈕
+        int count = 0;
+        foreach (var temp in GameDefinition.PlayerNameData)
         {
-            Application.LoadLevel("區域地圖");
+            //假如為空，代表不使用此角色，將從畫面上刪除
+            if (temp.Value != string.Empty)
+            {
+                count++;
+            }
         }
+        if (count >= GameDefinition.MinPlayerCount)
+            this.StartGameButton.SetActive(true);
+        else
+            this.StartGameButton.SetActive(false);
     }
 
     /// <summary>
