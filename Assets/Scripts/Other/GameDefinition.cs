@@ -24,7 +24,7 @@ public class GameDefinition
     public static GameType CurrentChooseGameType = GameType.None;
 
     //紀錄目前進行到的島嶼
-    public static Island CurrentIsland = Island.布列德島;
+    public static Island CurrentIsland = Island.莎吉斯島;
 
     //紀錄神秘島目前正在進行的寶物控制器腳本 
     public static TreasureController CurrentTreasureController_Script;
@@ -32,9 +32,9 @@ public class GameDefinition
     //任務被觸發的狀況 false = 未進行該任務 <目前為預設值>
     public static Dictionary<Mission, bool> MissionActiveStateMapping = new Dictionary<Mission, bool>() { 
         //(智慧)莎吉斯島
-        {Mission.卡片掉了,false} ,{Mission.黃綠紅,false},{Mission.知識通,false},{Mission.推理要在晚餐後,false},{Mission.消失的羅盤,false},
+        {Mission.卡片掉了,false} ,{Mission.黃綠紅,false},{Mission.知識通,false},{Mission.推理要在晚餐後,true},{Mission.消失的羅盤,false},
         //(勇氣)布列德島
-        {Mission.奶油水果派,false} ,{Mission.給我食譜,false},{Mission.我的船壞了,false},{Mission.在我的歌聲裡,false},{Mission.你怎麼連話都說不清楚,true},
+        {Mission.奶油水果派,false} ,{Mission.給我食譜,false},{Mission.我的船壞了,false},{Mission.在我的歌聲裡,false},{Mission.你怎麼連話都說不清楚,false},
         //(自信)康費爾森島
         {Mission.我要成為畢卡索,false} ,{Mission.筆墨登場,false},{Mission.你是我的眼,false},{Mission.未填詞,false},{Mission.混亂的程序,false}};
 
