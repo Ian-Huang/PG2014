@@ -11,6 +11,7 @@ public class ColorTo : MonoBehaviour
     public float ChangeTime;                            //過程花費時間
     public float DelayTime;                             //延遲
     public bool isStartChange;
+    public bool isAutoBack = false;
     public iTween.EaseType easeType;
     public iTween.LoopType loopType = iTween.LoopType.none;
 
@@ -58,6 +59,18 @@ public class ColorTo : MonoBehaviour
 
     void ColorComplete()
     {
-
+        if (this.isAutoBack)
+        {
+            iTween.ValueTo(this.gameObject, iTween.Hash(
+                "from", this.EndColor,
+                "to", this.StartColor,
+                "time", this.ChangeTime,
+                //"delay", this.DelayTime,
+                "onupdate", "ColorUpdate",
+                "oncomplete", "ColorComplete",
+                "easetype", this.easeType,
+                "looptype", this.loopType));
+            this.isAutoBack = false;
+        }
     }
 }

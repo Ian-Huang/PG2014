@@ -69,12 +69,17 @@ public class TreasureController : MonoBehaviour
         this.CloseBlackScreen.SetActive(true);
 
         //轉換為金色寶物
-        this.boneAnimation.Play("active");
+        this.boneAnimation.Play("shine");
 
+        //移除系統紀錄寶物腳本狀態
+        Invoke("RemoveScript", 0.5f);
+    }
+
+    void RemoveScript()
+    {
         //移除系統紀錄寶物腳本狀態
         GameDefinition.CurrentTreasureController_Script = null;
     }
-
 
     // Use this for initialization
     void Start()

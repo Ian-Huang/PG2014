@@ -38,12 +38,12 @@ public class RoleNameEnter : MonoBehaviour
             //名字長度 =0，顯示輸入提示，確認按鈕關閉
             if (this.EnterNameString.Length == 0)
             {
-                this.HintObject.SetActive(true);
+                //this.HintObject.SetActive(true);
                 this.SureObject.SetActive(false);
             }
             else
             {
-                this.HintObject.SetActive(false);
+                //this.HintObject.SetActive(false);
                 this.SureObject.SetActive(true);
             }
         }
@@ -58,12 +58,12 @@ public class RoleNameEnter : MonoBehaviour
 
         if (this.EnterNameString.Length == 0)
         {
-            this.HintObject.SetActive(true);
+            //this.HintObject.SetActive(true);
             this.SureObject.SetActive(false);
         }
         else
         {
-            this.HintObject.SetActive(false);
+            //this.HintObject.SetActive(false);
             this.SureObject.SetActive(true);
         }
     }

@@ -6,15 +6,11 @@ public class MovieController : MonoBehaviour
     public MovieTexture MovieClip;
 
     // Use this for initialization
-    void Start()
+    IEnumerator Start()
     {
         this.renderer.material.mainTexture = this.MovieClip;
         this.MovieClip.Play();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        yield return new WaitForSeconds(this.MovieClip.duration);
+        EventCollection.script.NextEvent();
     }
 }
