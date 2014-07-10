@@ -14,6 +14,9 @@ public class MapChangeController : MonoBehaviour
         {
             return (data.Island == GameDefinition.CurrentIsland);
         }).MapChangeEvents.SetActive(true);
+
+        //修改島嶼遊戲進行時間(15分鐘)
+        GameDefinition.CurrentGameTime = GameDefinition.AreaMaxGameTime;
     }
 
     [System.Serializable]

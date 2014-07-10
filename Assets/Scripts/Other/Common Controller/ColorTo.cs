@@ -12,6 +12,7 @@ public class ColorTo : MonoBehaviour
     public float DelayTime;                             //延遲
     public bool isStartChange;
     public bool isAutoBack = false;
+    public float AutoBackDelayTime;
     public iTween.EaseType easeType;
     public iTween.LoopType loopType = iTween.LoopType.none;
 
@@ -65,7 +66,7 @@ public class ColorTo : MonoBehaviour
                 "from", this.EndColor,
                 "to", this.StartColor,
                 "time", this.ChangeTime,
-                //"delay", this.DelayTime,
+                "delay", this.AutoBackDelayTime,
                 "onupdate", "ColorUpdate",
                 "oncomplete", "ColorComplete",
                 "easetype", this.easeType,

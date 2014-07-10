@@ -129,7 +129,8 @@ public class NPCTalkingManager : MonoBehaviour
             }
 
 
-            //2.支線任務尚未結束，重載場景，讓所有物件還原
+            //2.支線任務尚未結束，重載場景，讓所有物件還原。同時，紀錄目前剩餘的島嶼時間
+            GameDefinition.CurrentGameTime = GameObject.FindObjectOfType<GameTimer>().CountDownSecond;
             Application.LoadLevel(Application.loadedLevelName);
         }
     }

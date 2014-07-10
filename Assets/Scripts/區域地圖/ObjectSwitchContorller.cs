@@ -11,7 +11,7 @@ public class ObjectSwitchContorller : MonoBehaviour
     public List<GameObject> ObjectList;     //將被控制的物件清單
 
     // Use this for initialization
-    void Start()
+    void OnEnable()
     {
         //確認狀態
         if (this.switchType == SwitchType.Open)

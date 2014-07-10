@@ -11,6 +11,7 @@ public class ButtonController : MonoBehaviour
         {
             case GameDefinition.ButtonEvent.SureButton_RoleSelect:
                 RoleSelectController.script.SavePlayerNameToSystem();
+                RoleSelectController.script.RunRightCard();
                 break;
             case GameDefinition.ButtonEvent.RightArrow_RoleSelect:
                 RoleSelectController.script.RunRightCard();
@@ -64,9 +65,21 @@ public class ButtonController : MonoBehaviour
                 ColorGame_Manager.script.ShowQuestion();
                 SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
                 break;
-
             case GameDefinition.ButtonEvent.TreasureGame_Finish:    //神秘島，寶物問題完成
                 GameDefinition.CurrentTreasureController_Script.OpenEpilogue();
+                break;
+
+            case GameDefinition.ButtonEvent.NextAreaMap:    //進入結語，前往下一座島
+                EventCollection.script.EventList[EventCollection.script.CurrentEventIndex].SetActive(false);    //關閉目前事件物件
+                EventCollection.script.Special_CheckExitArea.SetActive(true);
+                break;
+            case GameDefinition.ButtonEvent.SureNextArea:    //防呆確認，進入結語，前往下一座島
+                EventCollection.script.Special_CheckExitArea.SetActive(false);
+                EventCollection.script.NextEvent(6);
+                break;
+            case GameDefinition.ButtonEvent.CancelNextArea:    //防呆取消，回到選NPC
+                EventCollection.script.EventList[EventCollection.script.CurrentEventIndex].SetActive(true);    //關閉目前事件物件
+                EventCollection.script.Special_CheckExitArea.SetActive(false);
                 break;
             default:
                 break;

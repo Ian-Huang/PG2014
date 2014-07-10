@@ -24,13 +24,15 @@ public class RoleNameEnter : MonoBehaviour
         this.originFontSize = this.style.fontSize;
     }
 
+
     void OnGUI()
     {
         this.style.fontSize = Mathf.FloorToInt(this.originFontSize * ((float)Screen.width / 640.0f));
 
+
         this.EnterNameString = GUI.TextField(
             new Rect(this.UIRect.x * Screen.width, this.UIRect.y * Screen.height, this.UIRect.width * Screen.width, this.UIRect.height * Screen.height),
-            this.EnterNameString, 5, this.style);
+            this.EnterNameString, 5, this.style).Replace("\n", "");
 
         //假如輸入框輸入內容產生改變
         if (GUI.changed)
@@ -47,6 +49,7 @@ public class RoleNameEnter : MonoBehaviour
                 this.SureObject.SetActive(true);
             }
         }
+
     }
 
     /// <summary>

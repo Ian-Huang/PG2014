@@ -20,6 +20,11 @@ public class GameTimer : MonoBehaviour
         this.SecondText.text = "";
         yield return new WaitForSeconds(this.GetComponent<ColorTo>().DelayTime + this.GetComponent<ColorTo>().ChangeTime);
 
+        //如果是區域地圖計時器，讀取系統紀錄遊戲時間
+        if (this.EndtoDo == TimerEndtoDo.AreaChangeTimeOutHint)
+            this.CountDownSecond = GameDefinition.CurrentGameTime;
+
+
         this.MinuteText.text = (this.CountDownSecond / 60).ToString("00");
         this.SecondText.text = (this.CountDownSecond % 60).ToString("00");
 
@@ -43,6 +48,9 @@ public class GameTimer : MonoBehaviour
                 case TimerEndtoDo.NextGameStep:
                     GameCollection.script.NextGameStep();
                     break;
+                case TimerEndtoDo.AreaChangeTimeOutHint:
+                    GameCollection.script.NextGameStep();
+                    break;
                 default:
                     break;
             }
@@ -63,6 +71,6 @@ public class GameTimer : MonoBehaviour
 
     public enum TimerEndtoDo
     {
-        Nothing = 0, NextGameStep = 1
+        Nothing = 0, NextGameStep = 1, AreaChangeTimeOutHint = 2
     }
 }
