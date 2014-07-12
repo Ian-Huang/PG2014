@@ -24,6 +24,11 @@ public class GameTimer : MonoBehaviour
         if (this.EndtoDo == TimerEndtoDo.AreaChangeTimeOutHint)
             this.CountDownSecond = GameDefinition.CurrentGameTime;
 
+        if (this.CountDownSecond <= this.WarningTime)
+        {
+            this.MinuteText.color = this.WarningColor;
+            this.SecondText.color = this.WarningColor;
+        }
 
         this.MinuteText.text = (this.CountDownSecond / 60).ToString("00");
         this.SecondText.text = (this.CountDownSecond % 60).ToString("00");
@@ -46,10 +51,11 @@ public class GameTimer : MonoBehaviour
             switch (this.EndtoDo)
             {
                 case TimerEndtoDo.NextGameStep:
-                    GameCollection.script.NextGameStep();
+                    if (this.gameObject.activeInHierarchy)
+                        GameCollection.script.NextGameStep();
                     break;
                 case TimerEndtoDo.AreaChangeTimeOutHint:
-                    GameCollection.script.NextGameStep();
+                    GameDefinition.CurrentGameTime = 0;
                     break;
                 default:
                     break;

@@ -54,6 +54,7 @@ public class HandSomethingGame_Manager : MonoBehaviour
         {
             //建立 圈圈 物件，停留時間1秒
             GameObject temp = Instantiate(this.CorrectObject) as GameObject;
+            temp.transform.parent = this.transform;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1;
             temp.SetActive(true);
 
@@ -68,6 +69,7 @@ public class HandSomethingGame_Manager : MonoBehaviour
         {
             //建立 圈圈 物件，停留時間1.5秒
             GameObject temp = Instantiate(this.ErrorObject) as GameObject;
+            temp.transform.parent = this.transform;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1.5f;
             temp.SetActive(true);
 

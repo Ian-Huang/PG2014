@@ -23,7 +23,7 @@ public class SingSongGame_Manager : MonoBehaviour
 
     void StartGame()
     {
-        this.audio.Play();
+        //this.audio.Play();
         this.SongTextDataList[this.currentIndex].TextObject.SetActive(true);
         Invoke("ShowSongText", this.SongTextDataList[this.currentIndex].Time);
     }

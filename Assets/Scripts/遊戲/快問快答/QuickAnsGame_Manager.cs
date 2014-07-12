@@ -64,7 +64,7 @@ public class QuickAnsGame_Manager : MonoBehaviour
                 else
                 {
                     //換行後面的字串如依然大於換行限定字數，則加入換行符號
-                    if (Qstring.Substring(this.EnterLineCount * count).Length > EnterLineCount)
+                    if (Qstring.Substring(this.EnterLineCount * count).Length >= EnterLineCount)
                         ShowString += Qstring.Substring(this.EnterLineCount * (count - 1), this.EnterLineCount) + "\n";
                     //如沒超過限定字數，則將字串加於ShowString
                     else
@@ -81,9 +81,9 @@ public class QuickAnsGame_Manager : MonoBehaviour
 
         //改變TextMesh Text (題目、選項一、選項二、選項三)
         this.QuestionText.text = ShowString;
-        this.OptionText1.text = "(1)" + this.CurrentQuestionData.OptionText1;
-        this.OptionText2.text = "(2)" + this.CurrentQuestionData.OptionText2;
-        this.OptionText3.text = "(3)" + this.CurrentQuestionData.OptionText3;
+        this.OptionText1.text = this.CurrentQuestionData.OptionText1;
+        this.OptionText2.text = this.CurrentQuestionData.OptionText2;
+        this.OptionText3.text = this.CurrentQuestionData.OptionText3;
 
         this.CanChoose = true;
     }
@@ -99,6 +99,7 @@ public class QuickAnsGame_Manager : MonoBehaviour
         {
             //建立 圈圈 物件，停留時間1秒
             GameObject temp = Instantiate(this.CorrectObject) as GameObject;
+            temp.transform.parent = this.transform;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1;
             temp.SetActive(true);
 
@@ -113,6 +114,7 @@ public class QuickAnsGame_Manager : MonoBehaviour
         {
             //建立 叉叉 物件，停留時間1.5秒
             GameObject temp = Instantiate(this.ErrorObject) as GameObject;
+            temp.transform.parent = this.transform;
             temp.GetComponent<AutoDestory>().AutoRunTime = 1.5f;
             temp.SetActive(true);
 

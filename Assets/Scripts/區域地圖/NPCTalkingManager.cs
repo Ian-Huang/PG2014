@@ -59,6 +59,36 @@ public class NPCTalkingManager : MonoBehaviour
                  "oncompletetarget", this.gameObject
                  ));
 
+        //切換音樂
+
+        MusicChange MusicChangeScript = null;
+        switch (GameDefinition.CurrentIsland)
+        {
+            case GameDefinition.Island.莎吉斯島:
+                MusicChangeScript = this.gameObject.AddComponent<MusicChange>();
+                MusicChangeScript.MusicType = MusicManager.MusicType.莎吉斯島;
+                MusicChangeScript.isLoop = true;
+                break;
+            case GameDefinition.Island.布列德島:
+                if (this.CurrentTalkingData.Mission != GameDefinition.Mission.在我的歌聲裡)   //歌喉戰音樂銜接較為特殊
+                {
+                    MusicChangeScript = this.gameObject.AddComponent<MusicChange>();
+                    MusicChangeScript.MusicType = MusicManager.MusicType.布列德島;
+                    MusicChangeScript.isLoop = true;
+                }
+                break;
+            case GameDefinition.Island.康費爾森島:
+                if (this.CurrentTalkingData.Mission != GameDefinition.Mission.未填詞)      //歌喉戰音樂銜接較為特殊
+                {
+                    MusicChangeScript = this.gameObject.AddComponent<MusicChange>();
+                    MusicChangeScript.MusicType = MusicManager.MusicType.康費爾森島;
+                    MusicChangeScript.isLoop = true;
+                }
+                break;
+            default:
+                break;
+        }
+
         //將目前即將結束任務，至遊戲系統更新為"已進行" = true
         GameDefinition.MissionActiveStateMapping[GameDefinition.CurrentChooseMission] = true;
 
@@ -84,7 +114,6 @@ public class NPCTalkingManager : MonoBehaviour
         //在離開任務對話轉場完成後
         else
         {
-
             //1.支線任務結束 or 15分鐘時間超過後，往下一事件進行  EventCollection NextEvent (未完成)
             switch (GameDefinition.CurrentIsland)
             {
@@ -130,7 +159,12 @@ public class NPCTalkingManager : MonoBehaviour
 
 
             //2.支線任務尚未結束，重載場景，讓所有物件還原。同時，紀錄目前剩餘的島嶼時間
-            GameDefinition.CurrentGameTime = GameObject.FindObjectOfType<GameTimer>().CountDownSecond;
+            int countdownTime = GameObject.FindObjectOfType<GameTimer>().CountDownSecond;
+            if (countdownTime <= 0)
+                GameDefinition.CurrentGameTime = 0;
+            else
+                GameDefinition.CurrentGameTime = countdownTime;
+
             Application.LoadLevel(Application.loadedLevelName);
         }
     }

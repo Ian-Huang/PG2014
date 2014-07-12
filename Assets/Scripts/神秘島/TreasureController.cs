@@ -17,6 +17,8 @@ public class TreasureController : MonoBehaviour
 
     public bool isActive = false;
 
+    public float originScale;
+
     void OnMouseUpAsButton()
     {
         if (this.isCanTouch && !this.isActive)
@@ -29,8 +31,26 @@ public class TreasureController : MonoBehaviour
             //目前進行的寶物，紀錄於系統
             GameDefinition.CurrentTreasureController_Script = this;
 
+            this.transform.localScale = Vector3.one * this.originScale;
+
             this.isActive = true;
             this.OpenQuestion();
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if (this.isCanTouch && !this.isActive)
+        {
+            this.transform.localScale = Vector3.one * this.originScale;
+        }
+    }
+
+    void OnMouseEnter()
+    {
+        if (this.isCanTouch && !this.isActive)
+        {
+            this.transform.localScale = Vector3.one * this.originScale * 1.06f;
         }
     }
 
@@ -79,11 +99,22 @@ public class TreasureController : MonoBehaviour
     {
         //移除系統紀錄寶物腳本狀態
         GameDefinition.CurrentTreasureController_Script = null;
+
+        //check 三樣寶物皆被觸發
+        foreach (TreasureController tempScript in GameObject.FindObjectsOfType<TreasureController>())
+        {
+            if (!tempScript.isActive)
+                return;
+            else
+                continue;
+        }
+        EventCollection.script.NextEvent();
     }
 
     // Use this for initialization
     void Start()
     {
+        this.originScale = this.transform.localScale.x;
         this.isActive = false;
         this.isCanTouch = false;
         this.boneAnimation = this.GetComponent<SmoothMoves.BoneAnimation>();

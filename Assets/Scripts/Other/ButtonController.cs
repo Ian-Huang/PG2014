@@ -9,6 +9,9 @@ public class ButtonController : MonoBehaviour
     {
         switch (this.buttonEvent)
         {
+            case GameDefinition.ButtonEvent.ExitGame:
+                Application.Quit();
+                break;
             case GameDefinition.ButtonEvent.SureButton_RoleSelect:
                 RoleSelectController.script.SavePlayerNameToSystem();
                 RoleSelectController.script.RunRightCard();
@@ -64,6 +67,12 @@ public class ButtonController : MonoBehaviour
             case GameDefinition.ButtonEvent.ColorGame_Error:    //顏不及意，錯誤按鈕
                 ColorGame_Manager.script.ShowQuestion();
                 SoundManager.script.PlaySound(SoundManager.SoundType.錯誤音效);
+                break;
+            case GameDefinition.ButtonEvent.ReasoningGameNextHint:    //推理在晚餐後，下一提示
+                ReasoningGame_Manager.script.ShowNextHint();
+                break;
+            case GameDefinition.ButtonEvent.ReasoningGameShowAnswer:    //推理在晚餐後，顯示答案
+                ReasoningGame_Manager.script.ShowAnswer();
                 break;
             case GameDefinition.ButtonEvent.TreasureGame_Finish:    //神秘島，寶物問題完成
                 GameDefinition.CurrentTreasureController_Script.OpenEpilogue();

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameDefinition
 {
     public static int GameScreenWidth = -1;
-    public static int GameScreenHeight= -1;
+    public static int GameScreenHeight = -1;
 
     //人物選擇交換時間
     public const float CardChangeTime = 0.5f;
@@ -75,7 +75,7 @@ public class GameDefinition
         new QuickAnsGameQuestionData("「小時了了、大未必佳」是指誰？","孔子","孔融","孔明",2),
         new QuickAnsGameQuestionData("希臘神話中，宙斯掌管宇宙，那掌管冥界的是誰？","黑帝斯","宙斯","普羅米修斯",1),
         new QuickAnsGameQuestionData("哪一種動物不會進行無性生殖？","蝸牛","蜜蜂","草履蟲",1),
-        new QuickAnsGameQuestionData("創價學會創辦之日是哪一天","3.16","11.18","5.3",2),
+        new QuickAnsGameQuestionData("創價學會創立之日是哪一天？","3.16","11.18","5.3",2),
         new QuickAnsGameQuestionData("台鐵普悠瑪號的名字是源自哪個原住民族的族語？","卑南族","布農族","阿美族",1),
         new QuickAnsGameQuestionData("以下何者「不是」第一次世界大戰期間的發明？","面紙","電燈泡","拉鍊",2),
         new QuickAnsGameQuestionData("以下哪個不是溫度的單位？","攝氏","華氏","芮氏",3),
@@ -95,7 +95,7 @@ public class GameDefinition
         new QuickAnsGameQuestionData("下列哪個動物不屬於十二生肖?","汗血寶馬","花栗鼠","哆啦A夢",3),
         new QuickAnsGameQuestionData("下列哪一下非現行社交通訊軟體？","LINE","WeChat","MSN",3),
         new QuickAnsGameQuestionData("請問被稱為「台灣電腦之父」是誰？","郭台銘","施振榮","李國鼎",2),
-        new QuickAnsGameQuestionData("下列何者是繪圖專用軟體","PE3","AmiPro","PhotoDraw",3),
+        new QuickAnsGameQuestionData("下列何者是繪圖專用軟體","繪聲繪影","Excel","PhotoShop",3),
         new QuickAnsGameQuestionData("下列哪一項非作業系統？","Mac OS","Linux","MMS",3),
         new QuickAnsGameQuestionData("身分證字號最後一碼是用來做為下列那種檢驗？","檢查號碼的正確性","一致性","範圍",1),
         new QuickAnsGameQuestionData("最後一位蘇聯領導人，推動政策改革，結束了全世界的冷戰對峙局面，此人是？","戈巴契夫","史達林","列寧",1),
@@ -108,20 +108,17 @@ public class GameDefinition
         new QuickAnsGameQuestionData("對所有人都極為尊敬，不輕視任何人，此一做人的良好態度，就如同？","諸天善神","觀世音菩薩","常不輕菩薩",3),
         new QuickAnsGameQuestionData("下列何者是象徵學問、思想的菩薩？","妙音菩薩","藥王菩薩","普賢菩薩",3),
         new QuickAnsGameQuestionData("貫徹信心的人， 誰必定會以各種人事物的姿態出現在其生活周遭，守護法華經的行者？","地涌菩薩","諸天善神","三類強敵",2),
-        new QuickAnsGameQuestionData("曾與池田先生對話的世界第一位「女太空人」，此人是。","海瑟‧亨德森","瓦倫欽那‧捷列什科娃","霹靂嬌娃",2),
-        new QuickAnsGameQuestionData("曾與池田先生對話，著名的武俠小說大師，「香港四大才子」之一，此人是？","古龍","黃易","金庸",3),
-        new QuickAnsGameQuestionData("曾與池田先生對話，非洲第一位諾貝爾和平獎女得主，創立綠帶運動，在肯亞種植四千五百萬棵樹，此人是？","萬家麗‧瑪阿塔伊","加倍加‧瑪阿塔伊","寶加利‧瑪阿塔伊",1),
+        new QuickAnsGameQuestionData("曾與池田先生共同出版對談集，著名的武俠小說大師，「香港四大才子」之一，此人是？","古龍","黃易","金庸",3),
+        new QuickAnsGameQuestionData("非洲第一位諾貝爾和平獎女得主，創立綠帶運動，在肯亞種植四千五百萬棵樹，此人是？","萬家麗‧瑪阿塔伊","加倍加‧瑪阿塔伊","寶加利‧瑪阿塔伊",1),
         new QuickAnsGameQuestionData("池田先生與湯因比博士的對談集，至今已被翻譯成28國語言出版，此書是？","二十一世紀的警鐘","展望二十一世紀","探求一個燦爛的世紀",2),
-        new QuickAnsGameQuestionData("曾與池田先生對話，先後獲得了諾貝爾化學獎與和平獎，二次大戰號召當時著名的科學家聯署反對發展核武，此人是？","萊納斯‧鮑林","馬克斯‧普朗克","約里奧‧居里",1),
-        new QuickAnsGameQuestionData("曾與池田先生對話，擔任中國總理期間發生文化大革命，他卻設法予以保護，挽救了大批珍貴文物，此人是？","胡錦濤","鄧小平","周恩來",3),
+        new QuickAnsGameQuestionData("曾與池田先生共同出版對談集，先後獲得了諾貝爾化學獎與和平獎，二次大戰號召當時著名的科學家聯署反對發展核武，此人是？","萊納斯‧鮑林","馬克斯‧普朗克","約里奧‧居里",1),
+        new QuickAnsGameQuestionData("曾與池田先生進行對談，擔任中國總理期間發生文化大革命，他卻設法予以保護，挽救了大批珍貴文物，此人是？","胡錦濤","鄧小平","周恩來",3),
         new QuickAnsGameQuestionData("此刻的我們都為了「遊戲過關」此相同目標一起努力，這就是所謂的？","同體異心","異地共戰","異體同心",3),
         new QuickAnsGameQuestionData("請問下列哪一項不包含「三障四魔」中的「四魔」？","天子魔","佛地魔","死魔",2),
         new QuickAnsGameQuestionData("請問下列哪一項不是三類強敵？","道門增上慢","念書真散漫","俗眾增上慢",2),
-        new QuickAnsGameQuestionData("下列哪個選項表示：一個人的想法，包含了各種法理？","一念三千","三千煩惱絲","三心二意",1),
-        new QuickAnsGameQuestionData("下列哪個選項是以實現永久的世界和平為主要目標？","久遠實成","開源節流","世界廣布",3),
         new QuickAnsGameQuestionData("一個人驕傲自滿，認為自己最有道理，固執不聽他人意見，下列哪個是對應此情況？","願兼於業","我慢偏執","一念三千",2),
         new QuickAnsGameQuestionData("當我們遇到各種生活挑戰時，哪句話告訴我們要以喜悅的心去面對？","十界互具","我慢偏執","煩惱即菩堤",3),
-        new QuickAnsGameQuestionData("下列何者意指:一切的困難與挑戰都是為了證明信心的功德而自願承受的？","廣宣流布","願兼於業","發?顯本",2),
+        new QuickAnsGameQuestionData("下列何者意指：一切的困難與挑戰都是為了證明信心的功德而自願承受的？","廣宣流布","願兼於業","發迹顯本",2),
         new QuickAnsGameQuestionData("貪得無厭，被慾望所控制而毫不滿足，是「十界」中的哪一界？","人界","地獄界","餓鬼界",3),
         new QuickAnsGameQuestionData("最低的人生境界，處於毫無歡喜、希望，掉入絕望悲慘的境涯，是「十界」中的哪一界？","菩薩界","地獄界","餓鬼界",2),
         new QuickAnsGameQuestionData("認真信心活動之人，即使生活上遇到任何苦難與困難，也必定能「」","轉重輕受","諸天善神","佛法西還",1),
@@ -135,7 +132,7 @@ public class GameDefinition
         new QuickAnsGameQuestionData("有「世界屋脊」之稱的是？","塔里木盆地","青藏高原","柴達木盆地",2),
         new QuickAnsGameQuestionData("小明出國去玩，當地晚上九點，他發現天還是亮的，請問他最有可能在哪個國家？","英國","新加坡","墨西哥",1),
         new QuickAnsGameQuestionData("《三國志》的作者是誰？","羅貫中","曹雪芹","陳壽",3),
-        new QuickAnsGameQuestionData("哈利波特小說中提到一個特別的月台，叫做什麼名字？","八又三分之一月台","七又七分之二","九又四分之三月台",3),
+        new QuickAnsGameQuestionData("哈利波特小說中提到一個特別的月台，叫做什麼名字？","八又三分之一月台","七又七分之二月台","九又四分之三月台",3),
         new QuickAnsGameQuestionData("反詐騙電話是幾號 ？","166","165","113",2),
         new QuickAnsGameQuestionData("賣火柴的小女孩、醜小鴨、國王的新衣等都是哪一個童話作家的作品？","格林","迪士尼","安徒生",3),
         new QuickAnsGameQuestionData("下列哪一項不屬於銅管樂器？","長笛","長號","法國號",1),
@@ -146,12 +143,14 @@ public class GameDefinition
     public static List<string> HandSomethingGameQuestionList = new List<string>() 
     {
        "葉問","如虎添翼","冰雪奇緣","哥吉拉","駭客任務","派大星","宮保雞丁","和樂新聞","旋轉木馬","變形金剛","阿基師","熱氣球","洗衣機","樂高","按摩椅",
-       "高中英知研習營","神魔之塔","雲霄飛車","隱形眼鏡","來自星星的你","馬拉松","唱題","鳳雛傳II","救護車","珍珠奶茶","颱風","少林足球","愛心媽媽"
+       "神魔之塔","雲霄飛車","隱形眼鏡","來自星星的你","馬拉松","唱題","鳳雛傳II","救護車","珍珠奶茶","颱風","少林足球","愛心媽媽"
     };
 
     //按鈕事件
     public enum ButtonEvent
     {
+        //離開遊戲
+        ExitGame = 1,
         //角色選擇場景
         SureButton_RoleSelect = 1000, LeftArrow_RoleSelect = 1001, RightArrow_RoleSelect = 1002, StartGame_RoleSelect = 1003,
 
@@ -159,7 +158,7 @@ public class GameDefinition
         MissionSure_Area = 2000, MissionCancel_Area = 2001, NextAreaMap = 2002, SureNextArea = 2003, CancelNextArea = 2004,
         NextGameStep = 3000,
         GameEnd = 4000, GameEnd_卡片掉了 = 4001,
-        HandSomethingGame_Correct = 5000, HandSomethingGame_Giveup = 5001, ColorGame_ShowAnswer = 5002, ColorGame_Correct = 5003, ColorGame_Error = 5004,
+        HandSomethingGame_Correct = 5000, HandSomethingGame_Giveup = 5001, ColorGame_ShowAnswer = 5002, ColorGame_Correct = 5003, ColorGame_Error = 5004, ReasoningGameNextHint = 5005, ReasoningGameShowAnswer = 5006,
         TreasureGame_Finish = 6000
     }
 
@@ -176,7 +175,7 @@ public class GameDefinition
         翠絲 = 11, 巴洛 = 12, 卡勒b = 13, 里昂 = 14, 莉莉卡 = 15, 葛蘭蒂 = 16,
 
         //NPC----
-        卡片收集者 = 21, 知識通 = 22, 警長 = 23, 小偷 = 24, //第一座島嶼
+        卡片蒐集者 = 21, 知識通 = 22, 警長 = 23, 小偷 = 24, //第一座島嶼
         貪吃鬼 = 31, 甜點師 = 32, 老船長 = 33, 美人魚 = 34, 醫生 = 35, 病人 = 36, //第二座島嶼
         小畫家 = 41, 著名歌手 = 42, 音樂家 = 43, 村長 = 44 //第三座島嶼
     }
@@ -204,8 +203,8 @@ public class GameDefinition
     {
         None = 0,
         記憶對對碰 = 1, 顏不及意 = 2, 快問快答 = 3, 推理要在晚餐後 = 4, 支援前線_1 = 5,
-        大家來找碴 = 6, 歌喉戰_1 = 7, 比手畫腳 = 8, 人人都是畢卡索 = 9, 排列組合 = 10,
-        支援前線_2 = 11, 歌喉戰_2 = 12
+        大家來找碴 = 6, 歌喉戰_1 = 7, 比手畫腳 = 8, 人人都是畢卡索_1 = 9, 排列組合 = 10,
+        支援前線_2 = 11, 歌喉戰_2 = 12, 人人都是畢卡索_2 = 13
     }
 
     public enum Island

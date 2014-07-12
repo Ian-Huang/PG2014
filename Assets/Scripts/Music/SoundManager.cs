@@ -9,6 +9,9 @@ public class SoundManager : MonoBehaviour
 {
     public List<SoundData> SoundDataList;   //音效資料清單
 
+    public AudioClip PlayClip;
+    public float delayTime;
+
     public static SoundManager script;
 
     void Awake()
@@ -21,6 +24,12 @@ public class SoundManager : MonoBehaviour
     {
         if (this.audio == null)
             this.gameObject.AddComponent<AudioSource>();
+
+        if (this.PlayClip != null)
+        {
+            this.audio.clip = this.PlayClip;
+            this.audio.PlayDelayed(this.delayTime);
+        }
     }
 
     /// <summary>

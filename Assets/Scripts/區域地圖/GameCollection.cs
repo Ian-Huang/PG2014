@@ -26,6 +26,16 @@ public class GameCollection : MonoBehaviour
     [HideInInspector]
     public int ColorGameCorrectCount = 0;
 
+    //紀錄"推理在晚餐後"遊戲成績
+    [HideInInspector]
+    public int ReasoningGame_OneHintAnswerCount = 0;
+    [HideInInspector]
+    public int ReasoningGame_TwoHintAnswerCount = 0;
+    [HideInInspector]
+    public int ReasoningGame_ThreeHintAnswerCount = 0;
+    [HideInInspector]
+    public int ReasoningGame_FourHintAnswerCount = 0;
+
     public static GameCollection script;
 
     void Awake()
