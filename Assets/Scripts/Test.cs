@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Test : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Test : MonoBehaviour
     {
 
     }
-
+   
     void OnGUI()
     {
         this.address = GUI.TextField(new Rect(100, 100, 100, 100), this.address);
